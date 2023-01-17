@@ -25,6 +25,26 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // Gate untuk menampilkan menu khusus admin
+        Gate::define('admin_area', function ($user) {
+
+            if (auth()->user()->is_admin == 1) {
+                return true;
+            }
+
+            return false;
+
+        });
+
+        // Gate untuk menampilkan menu khusus User
+        Gate::define('user_area', function ($user) {
+
+            if (auth()->user()->is_admin == 0 && auth()->user()->email_verified_at != NULL) {
+                return true;
+            }
+
+            return false;
+
+        });
     }
 }

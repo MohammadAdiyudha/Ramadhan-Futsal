@@ -16,4 +16,5 @@
 
 @section('js')
     <script> console.log('Hi!'); </script>
+    <script src="https://kit.fontawesome.com/f68e3b150b.js" crossorigin="anonymous"></script>
 @stop

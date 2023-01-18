@@ -39,7 +39,8 @@ Route::group(['middleware' => 'is_admin'], function () {
         return redirect()->route('admin.home');
     });
 
-    Route::get('admin/data_user', function () {
-        return view('admin/dataUser');
-    })->name('admin.dataUser');
+    // Route::get('admin/data_user', function () {
+    //     return view('admin/dataUser');
+    // })->name('admin.dataUser');
+    Route::get('admin/data_user', [App\Http\Controllers\UsersController::class, 'index']);
 });

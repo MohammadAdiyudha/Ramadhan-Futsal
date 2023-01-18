@@ -7,6 +7,14 @@
 @stop
 
 @section('content')
+    <blockquote class="quote-olive">
+        <h5 class="text-olive">Tips!</h5>
+        <p>
+            <i class="fa-solid fa-pen-to-square fa-fw"></i> edit untuk mengubah data dan verifikasi manual
+            <br>
+            <i class="fa-solid fa-trash fa-fw"></i> hapus untuk menghapus data user tersebut
+        </p>
+    </blockquote>
 
     <div class="table-responsive">
         <table id="user_table" class="display table table-bordered">
@@ -46,9 +54,11 @@
                             <button type="button" class="btn btn-warning">
                                 <i class="fa-solid fa-pen-to-square fa-fw"></i>Edit
                             </button>
-                            <button type="button" class="btn btn-danger">
-                                <i class="fa-solid fa-trash fa-fw"></i>Hapus
-                            </button>
+                            @if ($user->id != Auth::user()->id) {{--Biar tidak bisa hapus akun sendiri--}}
+                                <button type="button" class="btn btn-danger">
+                                    <i class="fa-solid fa-trash fa-fw"></i>Hapus
+                                </button>
+                            @endif
                         </div>
                     </td>
                 </tr>
@@ -80,6 +90,10 @@
                     { orderable: false, targets: 5 }, //Aksi tidak bisa di sorting
                 ],
                 order: [[1, 'asc']], // Order dari Nama
+                language: { // Ubah bahasa tabel ke indonesia
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.1/i18n/id.json'
+                }
+
             });
 
             // Fungsi biar iterasi di No.

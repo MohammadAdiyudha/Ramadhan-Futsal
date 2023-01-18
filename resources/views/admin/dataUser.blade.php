@@ -31,31 +31,33 @@
             <tbody>
                 @foreach ($users as $user)
                 <tr>
-                    <td class="text-center"></td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>
+                    <td class="text-center align-middle"></td>
+                    <td class="align-middle">{{ $user->name }}</td>
+                    <td class="align-middle">{{ $user->email }}</td>
+
+                    <td class="align-middle">
                         @if($user->is_admin == true)
                            <strong class="text-success">Admin</strong>
                         @else
                             User
                         @endif
                     </td>
-                    <td class="text-center">
+
+                    <td class="text-center align-middle">
                         @if ($user->email_verified_at == NULL)
-                            <i class="fa-solid fa-circle-xmark text-danger"></i>
+                            <i class="fa-solid fa-circle-xmark text-danger fa-xl"></i>
                         @else
-                            <i class="fa-solid fa-circle-check text-primary"></i>
+                            <i class="fa-solid fa-circle-check text-primary fa-xl"></i>
                         @endif
                     </td>
                     {{-- Aksi Button Group --}}
-                    <td class="text-center">
+                    <td class="text-center align-middle">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-warning">
+                            <button type="button" class="btn btn-warning btn-sm">
                                 <i class="fa-solid fa-pen-to-square fa-fw"></i>Edit
                             </button>
                             @if ($user->id != Auth::user()->id) {{--Biar tidak bisa hapus akun sendiri--}}
-                                <button type="button" class="btn btn-danger">
+                                <button type="button" class="btn btn-danger btn-sm">
                                     <i class="fa-solid fa-trash fa-fw"></i>Hapus
                                 </button>
                             @endif

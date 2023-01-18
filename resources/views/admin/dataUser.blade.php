@@ -12,6 +12,9 @@
             <tr>
                 <th>No.</th>
                 <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +22,15 @@
             <tr>
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>
+                    @if($user->is_admin == true)
+                        Admin
+                    @else
+                        User
+                    @endif
+                </td>
+                <td></td>
             </tr>
             @endforeach
         </tbody>

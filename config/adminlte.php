@@ -304,7 +304,7 @@ return [
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
-            'text' => 'search',
+            'text' => 'Cari menu..',
         ],
         // Menu
         ['header' => 'MENU','can'  => ['admin_area','user_area']],
@@ -347,12 +347,12 @@ return [
         // SETTING AKUN
         ['header' => 'PENGATURAN AKUN'],
         [
-            'text' => 'Ganti Password',
+            'text' => 'change_password',
             'url'  => 'changePassword',
             'icon' => 'fas fa-fw fa-lock fa-fw',
         ],
         [
-            'text' => 'Logout',
+            'text' => 'log_out',
             'url'  => 'logout',
             'icon' => 'fa-solid fa-right-from-bracket fa-fw',
         ],

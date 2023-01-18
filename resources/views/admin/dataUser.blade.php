@@ -39,7 +39,7 @@
                         @if($user->is_admin == true)
                            <strong class="text-success">Admin</strong>
                         @else
-                            User
+                            Pelanggan
                         @endif
                     </td>
 

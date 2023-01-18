@@ -17,8 +17,8 @@
     </blockquote>
 
     <div class="table-responsive">
-        <table id="user_table" class="display table table-bordered">
-            <thead>
+        <table id="user_table" class="display table table-bordered table-hover">
+            <thead class="thead-dark">
                 <tr>
                     <th class="text-center">No.</th>
                     <th class="text-center">Name</th>
@@ -31,33 +31,36 @@
             <tbody>
                 @foreach ($users as $user)
                 <tr>
-                    <td class="text-center align-middle"></td>
-                    <td class="align-middle">{{ $user->name }}</td>
-                    <td class="align-middle">{{ $user->email }}</td>
-
-                    <td class="align-middle">
+                    {{-- Kolom 0 - No --}}
+                    <td></td>
+                    {{-- Kolom 1 - Nama --}}
+                    <td class="">{{ $user->name }}</td>
+                    {{-- Kolom 2 - Email --}}
+                    <td class="">{{ $user->email }}</td>
+                    {{-- Kolom 3 - Role --}}
+                    <td>
                         @if($user->is_admin == true)
                            <strong class="text-success">Admin</strong>
                         @else
                             Pelanggan
                         @endif
                     </td>
-
-                    <td class="text-center align-middle">
+                    {{-- Kolom 4 - Verifikasi --}}
+                    <td>
                         @if ($user->email_verified_at == NULL)
                             <i class="fa-solid fa-circle-xmark text-danger fa-xl"></i>
                         @else
                             <i class="fa-solid fa-circle-check text-primary fa-xl"></i>
                         @endif
                     </td>
-                    {{-- Aksi Button Group --}}
-                    <td class="text-center align-middle">
+                    {{-- Kolom 5 - Aksi --}}
+                    <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-warning btn-sm">
+                            <button type="button" class="btn btn-warning ">
                                 <i class="fa-solid fa-pen-to-square fa-fw"></i>Edit
                             </button>
                             @if ($user->id != Auth::user()->id) {{--Biar tidak bisa hapus akun sendiri--}}
-                                <button type="button" class="btn btn-danger btn-sm">
+                                <button type="button" class="btn btn-danger">
                                     <i class="fa-solid fa-trash fa-fw"></i>Hapus
                                 </button>
                             @endif
@@ -87,9 +90,12 @@
                     {
                         searchable: false,
                         orderable: false,
-                        targets: 0,
+                        targets: 0, //No tidak bisa disorting dan search
                     },
-                    { orderable: false, targets: 5 }, //Aksi tidak bisa di sorting
+                    { orderable: false, targets: 5 }, //Aksi tidak bisa disorting
+
+                    { className: "align-middle", "targets": [ 0,1,2,3,4,5 ] }, //Vertical Alignment
+                    { className: "text-center", "targets": [ 0,4,5 ] }, //Horizontal Alignment
                 ],
                 order: [[1, 'asc']], // Order dari Nama
                 language: { // Ubah bahasa tabel ke indonesia

@@ -16,4 +16,5 @@ return [
     'important'                     => 'Penting',
     'warning'                       => 'Peringatan',
     'information'                   => 'Informasi',
+    'log_out'                       => 'Logout',
 ];

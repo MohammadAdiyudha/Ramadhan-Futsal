@@ -38,4 +38,8 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('admin', function () {
         return redirect()->route('admin.home');
     });
+
+    Route::get('admin/data_user', function () {
+        return view('admin/dataUser');
+    })->name('admin.dataUser');
 });

@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => 'Futsal<b>Ramadhan</b>',
+    'logo_img' => 'assets/logo/Logo 50x50.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_alt' => 'Futsal Ramadhan Logo',
 
     /*
     |--------------------------------------------------------------------------
@@ -86,8 +86,8 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-            'alt' => 'Auth Logo',
+            'path' => 'assets/logo/Logo 50x50.png',
+            'alt' => 'Futsal Ramadhan Logo',
             'class' => '',
             'width' => 50,
             'height' => 50,
@@ -109,11 +109,11 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-            'alt' => 'AdminLTE Preloader Image',
+            'path' => 'assets/logo/Logo 50x50.png',
+            'alt' => 'Ramadhan Futsal Logo',
             'effect' => 'animation__shake',
-            'width' => 60,
-            'height' => 60,
+            'width' => 100,
+            'height' => 100,
         ],
     ],
 
@@ -291,11 +291,11 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
+        // [
+        //     'type'         => 'navbar-search',
+        //     'text'         => 'search',
+        //     'topnav_right' => true,
+        // ],
         // [
         //     'type'         => 'fullscreen-widget',
         //     'topnav_right' => true,
@@ -307,7 +307,7 @@ return [
             'text' => 'search',
         ],
         // Menu
-        ['header' => 'Menu','can'  => ['admin_area','user_area']],
+        ['header' => 'MENU','can'  => ['admin_area','user_area']],
         // Dashboard Admin
         [
             'text' => 'Dashboard',
@@ -345,11 +345,16 @@ return [
         ],
 
         // SETTING AKUN
-        ['header' => 'account_settings'],
+        ['header' => 'PENGATURAN AKUN'],
         [
             'text' => 'Ganti Password',
             'url'  => 'changePassword',
             'icon' => 'fas fa-fw fa-lock fa-fw',
+        ],
+        [
+            'text' => 'Logout',
+            'url'  => 'logout',
+            'icon' => 'fa-solid fa-right-from-bracket fa-fw',
         ],
         // [
         //     'text'    => 'multilevel',

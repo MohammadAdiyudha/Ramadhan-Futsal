@@ -7,6 +7,12 @@
 @stop
 
 @section('content')
+    <blockquote class="quote-warning">
+        <h5 class="text-warning">Tips!</h5>
+        <p>
+            <i class="fa-solid fa-lock"></i> <strong>Password</strong> hanya bisa diubah oleh pemilih Akun
+        </p>
+    </blockquote>
 
     <div class="container">
         <div class="row">

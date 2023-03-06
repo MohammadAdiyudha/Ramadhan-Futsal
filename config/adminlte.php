@@ -332,16 +332,16 @@ return [
         ],
         // MENU ADMIN
         [
-            'text' => 'Data User',
-            'url'  => 'admin/data_user',
-            'can'  => 'admin_area',
-            'icon' => 'fa-solid fa-users fa-fw',
-        ],
-        [
             'text' => 'Data Reservasi',
             'url'  => 'data_reservasi',
             'can'  => ['admin_area','user_area'],
             'icon' => 'fa-solid fa-book-bookmark fa-fw',
+        ],
+        [
+            'text' => 'Data User',
+            'url'  => 'admin/data_user',
+            'can'  => 'admin_area',
+            'icon' => 'fa-solid fa-users fa-fw',
         ],
 
         // SETTING AKUN
@@ -354,6 +354,11 @@ return [
         [
             'text' => 'log_out',
             'url'  => 'logout',
+            'icon' => 'fa-solid fa-right-from-bracket fa-fw',
+        ],
+        [
+            'text' => 'Testing Page',
+            'url'  => 'test',
             'icon' => 'fa-solid fa-right-from-bracket fa-fw',
         ],
         // [

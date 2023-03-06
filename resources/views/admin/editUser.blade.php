@@ -32,11 +32,17 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">Role</label>
-                                <select name="test">
-                                    <option value="1" <?php echo $user['is_admin'] == 1 ? ' selected ' : '';?>>Admin</option>
-                                    <option value="0" <?php echo $user['is_admin'] == 0 ? ' selected ' : '';?>>Pelanggan</option>
+                                <select name="role">
+                                    <option value=1 <?php echo $user['is_admin'] == 1 ? ' selected ' : '';?>>Admin</option>
+                                    <option value=0 <?php echo $user['is_admin'] == 0 ? ' selected ' : '';?>>Pelanggan</option>
                                 </select>
                             </div>
+                            {{-- @if ($user->email_verified_at == NULL)
+                                <div class="form-group mb-3">
+                                    <input type="checkbox" name="email_verified_at" value= class="form-control">
+                                    <label for="">Verifikasi Email</label>
+                                </div>
+                            @endif --}}
                             <div class="form-group mb-3">
                                 <button type="submit" class="btn btn-primary">Update User</button>
                             </div>

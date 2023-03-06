@@ -28,6 +28,7 @@ class UsersController extends Controller
         $user = User::find($id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->is_admin = $request->input('role');
         $user->update();
 
         return redirect('admin/data_user')->with('success','Ubah data berhasil');

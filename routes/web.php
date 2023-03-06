@@ -42,13 +42,16 @@ Route::group(['middleware' => 'is_admin'], function () {
     // Route::get('admin/data_user', function () {
     //     return view('admin/dataUser');
     // })->name('admin.dataUser');
-    Route::get('admin/data_user', [App\Http\Controllers\UsersController::class, 'index']);
+    Route::get('admin/data-user', [App\Http\Controllers\UsersController::class, 'index']);
 
     Route::get('test', function () {
         return view('test');
     });
 
+    // Mengubah Data User
+    Route::get('admin/edit-user/{id}',  [App\Http\Controllers\UsersController::class, 'edit']); //route untuk ke halaman edit data
+    Route::post('admin/update-user/{id}',  [App\Http\Controllers\UsersController::class, 'update']); //route untuk mengupdate data ke database
 
-    Route::get('admin/edit/{id}',  [App\Http\Controllers\UsersController::class, 'edit']); //route untuk ke halaman edit data
-    Route::post('admin/update/{id}',  [App\Http\Controllers\UsersController::class, 'update']); //route untuk mengupdate data ke database
+    // Menghapus Data User
+    Route::get('admin/hapus-user/{id}',  [App\Http\Controllers\UsersController::class, 'hapus']);
 });

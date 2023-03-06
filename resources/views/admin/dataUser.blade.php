@@ -58,13 +58,13 @@
                     {{-- Kolom 5 - Aksi --}}
                     <td>
                         <div class="btn-group">
-                            <a href="{{ url('admin/edit/'.$user->id) }}"  class="btn btn-warning">
+                            <a href="{{ url('admin/edit-user/'.$user->id) }}"  class="btn btn-warning">
                                 <i class="fa-solid fa-pen-to-square fa-fw"></i>Edit
                             </a>
                             @if ($user->id != Auth::user()->id) {{--Biar tidak bisa hapus akun sendiri--}}
-                                <button type="button" class="btn btn-danger">
+                                <a href="{{ url('admin/hapus-user/'.$user->id) }}" class="btn btn-danger">
                                     <i class="fa-solid fa-trash fa-fw"></i>Hapus
-                                </button>
+                                </a>
                             @endif
                         </div>
                     </td>

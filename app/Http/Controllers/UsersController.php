@@ -32,6 +32,13 @@ class UsersController extends Controller
         $user->email_verified_at = $request->input('verifikasi');
         $user->update();
 
-        return redirect('admin/data_user')->with('success','Ubah data berhasil');
+        return redirect('admin/data-user')->with('success','Ubah data berhasil');
+    }
+
+    public function hapus($id){
+        $user   = User::find($id);
+        $user->delete();
+
+        return redirect('admin/data-user')->with('success','Hapus data berhasil');
     }
 }

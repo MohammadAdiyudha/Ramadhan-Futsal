@@ -51,7 +51,7 @@
                             @endif
                             {{-- Tombol Submit --}}
                             <div class="form-group mb-3">
-                                <button type="submit" class="btn btn-primary">Update User</button>
+                                <button type="submit" class="btn btn-primary">Ubah</button>
                             </div>
 
                         </form>

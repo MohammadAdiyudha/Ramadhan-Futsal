@@ -13,11 +13,6 @@
             <div class="col-md-12">
 
                 <div class="card">
-                    <div class="card-header">
-                        <h4>Edit & Update User
-                            <a href="{{ url('index') }}" class="btn btn-danger float-end">BACK</a>
-                        </h4>
-                    </div>
                     <div class="card-body">
 
                         <form action="{{ url('admin/update/'.$user->id) }}" method="POST">
@@ -39,7 +34,7 @@
                             </div>
                             @if ($user->email_verified_at == NULL)
                                 <div class="form-group mb-3">
-                                    <input type="checkbox" name="verifikasi" class="form-control">
+                                    <input type="checkbox" name="verifikasi" value="a" class="form-control">
                                     <label for="">Verifikasi Email</label>
                                 </div>
                             @endif

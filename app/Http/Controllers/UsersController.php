@@ -29,6 +29,7 @@ class UsersController extends Controller
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->is_admin = $request->input('role');
+        $user->email_verified_at = $request->input('verifikasi');
         $user->update();
 
         return redirect('admin/data_user')->with('success','Ubah data berhasil');

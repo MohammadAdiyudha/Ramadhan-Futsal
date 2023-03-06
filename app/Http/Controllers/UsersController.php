@@ -25,19 +25,13 @@ class UsersController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|unique:users,email'
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->with('error','Ada data yang salah');
-        }
-
         $user = User::find($id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->is_admin = $request->input('role');
-        $user->email_verified_at = $request->input('verifikasi');
+        if ($user->email_verified_at == NULL){
+            $user->email_verified_at = $request->input('verifikasi');
+        };
         $user->update();
 
         return redirect('admin/data-user')->with('success','Ubah data berhasil');

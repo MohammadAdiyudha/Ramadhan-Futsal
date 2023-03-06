@@ -24,6 +24,7 @@
                     <th class="text-center">Name</th>
                     <th class="text-center">Email</th>
                     <th class="text-center">Role</th>
+                    <th class="text-center">ID Akun</th>
                     <th class="text-center">Verifikasi</th>
                     <th class="text-center">Aksi</th>
                 </tr>
@@ -45,6 +46,7 @@
                             Pelanggan
                         @endif
                     </td>
+                    <td class="">{{ $user->id }}</td>
                     {{-- Kolom 4 - Verifikasi --}}
                     <td>
                         @if ($user->email_verified_at == NULL)
@@ -56,9 +58,9 @@
                     {{-- Kolom 5 - Aksi --}}
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-warning ">
+                            <a href="{{ url('admin/edit/'.$user->id) }}"  class="btn btn-warning">
                                 <i class="fa-solid fa-pen-to-square fa-fw"></i>Edit
-                            </button>
+                            </a>
                             @if ($user->id != Auth::user()->id) {{--Biar tidak bisa hapus akun sendiri--}}
                                 <button type="button" class="btn btn-danger">
                                     <i class="fa-solid fa-trash fa-fw"></i>Hapus
@@ -94,8 +96,8 @@
                     },
                     { orderable: false, targets: 5 }, //Aksi tidak bisa disorting
 
-                    { className: "align-middle", "targets": [ 0,1,2,3,4,5 ] }, //Vertical Alignment
-                    { className: "text-center", "targets": [ 0,4,5 ] }, //Horizontal Alignment
+                    { className: "align-middle", "targets": [ 0,1,2,3,4,5,6 ] }, //Vertical Alignment
+                    { className: "text-center", "targets": [ 0,3,4,5,6 ] }, //Horizontal Alignment
                 ],
                 order: [[1, 'asc']], // Order dari Nama
                 language: { // Ubah bahasa tabel ke indonesia

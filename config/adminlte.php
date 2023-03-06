@@ -339,7 +339,7 @@ return [
         ],
         [
             'text' => 'Data User',
-            'url'  => 'admin/data_user',
+            'url'  => 'admin/data-user',
             'can'  => 'admin_area',
             'icon' => 'fa-solid fa-users fa-fw',
         ],

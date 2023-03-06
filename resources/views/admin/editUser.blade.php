@@ -15,7 +15,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form action="{{ url('admin/update/'.$user->id) }}" method="POST">
+                        <form action="{{ url('admin/update-user/'.$user->id) }}" method="POST">
                             @csrf
                             <div class="form-group mb-3">
                                 <label for="">Name</label>

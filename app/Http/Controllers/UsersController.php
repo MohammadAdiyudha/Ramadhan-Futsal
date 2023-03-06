@@ -7,6 +7,7 @@ use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -19,12 +20,19 @@ class UsersController extends Controller
     {
         $user   = User::whereId($id)->first();
         return view('admin/editUser')->with('user', $user);
-        // return view('admin/editUser', compact('user'));
 
     }
 
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|unique:users,email'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('error','Ada data yang salah');
+        }
+
         $user = User::find($id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');

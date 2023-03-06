@@ -62,9 +62,12 @@
                                 <i class="fa-solid fa-pen-to-square fa-fw"></i>Edit
                             </a>
                             @if ($user->id != Auth::user()->id) {{--Biar tidak bisa hapus akun sendiri--}}
-                                <a href="{{ url('admin/hapus-user/'.$user->id) }}" class="btn btn-danger">
+                                {{-- <a href="{{ url('admin/hapus-user/'.$user->id) }}" class="btn btn-danger">
                                     <i class="fa-solid fa-trash fa-fw"></i>Hapus
-                                </a>
+                                </a> --}}
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                                    <i class="fa-solid fa-trash fa-fw"></i>Hapus
+                                </button>
                             @endif
                         </div>
                     </td>
@@ -74,6 +77,29 @@
         </table>
     </div>
 
+
+  <!-- Modal - Konfirmasi Hapus-->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Hapus Akun</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin menghapus akun ini?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                    <a href="{{ url('admin/hapus-user/'.$user->id) }}" class="btn btn-danger">
+                        <i class="fa-solid fa-trash fa-fw"></i>Hapus
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('css')

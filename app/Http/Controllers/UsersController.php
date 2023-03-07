@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -29,9 +30,16 @@ class UsersController extends Controller
         $user = User::find($id);
 
         // Validasi email unique, dengan kondisi abaikan id yang diedit
-        $this->validate($request, [
-            'email' => ['required', Rule::unique('users')->ignore($user->id)],
+        $validator = Validator::make($request->all(), [
+            'name'  => 'required|max:255',
+            'email' => ['required','email', Rule::unique('users')->ignore($user->id)],
         ]);
+
+        // Jika Validator gagal
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');

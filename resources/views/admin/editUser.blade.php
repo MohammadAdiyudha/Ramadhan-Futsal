@@ -27,14 +27,26 @@
                             <div class="form-group row mb-3">
                                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="name" id="name" value="{{$user->name}}" class="form-control">
+                                    <input type="text" name="name" id="name" value="{{$user->name}}" class="form-control @error('name') is-invalid @enderror">
+                                    {{-- Jika ada error dari controller --}}
+                                    @error('name')
+                                        <div id="validationServer05Feedback" class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             {{-- Kolom Email --}}
                             <div class="form-group row mb-3">
                                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="email" id="email" value="{{$user->email}}" class="form-control">
+                                    <input type="text" name="email" id="email" value="{{$user->email}}" class="form-control @error('email') is-invalid @enderror">
+                                    {{-- Jika ada error dari controller --}}
+                                    @error('email')
+                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             {{-- Kolom Role --}}

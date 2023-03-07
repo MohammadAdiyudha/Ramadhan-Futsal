@@ -16,87 +16,68 @@
         </p>
     </blockquote>
 
-    <div class="table-responsive">
-        <table id="user_table" class="display table table-bordered table-hover">
-            <thead class="thead-dark">
-                <tr>
-                    <th class="text-center">No.</th>
-                    <th class="text-center">Name</th>
-                    <th class="text-center">Email</th>
-                    <th class="text-center">Role</th>
-                    <th class="text-center">ID Akun</th>
-                    <th class="text-center">Verifikasi</th>
-                    <th class="text-center">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
-                <tr>
-                    {{-- Kolom 0 - No --}}
-                    <td></td>
-                    {{-- Kolom 1 - Nama --}}
-                    <td class="">{{ $user->name }}</td>
-                    {{-- Kolom 2 - Email --}}
-                    <td class="">{{ $user->email }}</td>
-                    {{-- Kolom 3 - Role --}}
-                    <td>
-                        @if($user->is_admin == true)
-                           <strong class="text-success">Admin</strong>
-                        @else
-                            Pelanggan
-                        @endif
-                    </td>
-                    <td class="">{{ $user->id }}</td>
-                    {{-- Kolom 4 - Verifikasi --}}
-                    <td>
-                        @if ($user->email_verified_at == NULL)
-                            <i class="fa-solid fa-circle-xmark text-danger fa-xl"></i>
-                        @else
-                            <i class="fa-solid fa-circle-check text-primary fa-xl"></i>
-                        @endif
-                    </td>
-                    {{-- Kolom 5 - Aksi --}}
-                    <td>
-                        <div class="btn-group">
-                            <a href="{{ url('admin/edit-user/'.$user->id) }}"  class="btn btn-warning">
-                                <i class="fa-solid fa-pen-to-square fa-fw"></i>Edit
-                            </a>
-                            @if ($user->id != Auth::user()->id) {{--Biar tidak bisa hapus akun sendiri--}}
-                                {{-- <a href="{{ url('admin/hapus-user/'.$user->id) }}" class="btn btn-danger">
-                                    <i class="fa-solid fa-trash fa-fw"></i>Hapus
-                                </a> --}}
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
-                                    <i class="fa-solid fa-trash fa-fw"></i>Hapus
-                                </button>
-                            @endif
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-
-
-  <!-- Modal - Konfirmasi Hapus-->
-  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Hapus Akun</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus akun ini?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                    <a href="{{ url('admin/hapus-user/'.$user->id) }}" class="btn btn-danger">
-                        <i class="fa-solid fa-trash fa-fw"></i>Hapus
-                    </a>
-                </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="user_table" class="display table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="text-center">No.</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">Role</th>
+                            <th class="text-center">ID Akun</th>
+                            <th class="text-center">Verifikasi</th>
+                            <th class="text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($users as $user)
+                        <tr>
+                            {{-- Kolom 0 - No --}}
+                            <td></td>
+                            {{-- Kolom 1 - Nama --}}
+                            <td class="">{{ $user->name }}</td>
+                            {{-- Kolom 2 - Email --}}
+                            <td class="">{{ $user->email }}</td>
+                            {{-- Kolom 3 - Role --}}
+                            <td>
+                                @if($user->is_admin == true)
+                                   <strong class="text-success">Admin</strong>
+                                @else
+                                    Pelanggan
+                                @endif
+                            </td>
+                            <td class="">{{ $user->id }}</td>
+                            {{-- Kolom 4 - Verifikasi --}}
+                            <td>
+                                @if ($user->email_verified_at == NULL)
+                                    <i class="fa-solid fa-circle-xmark text-danger fa-xl"></i>
+                                @else
+                                    <i class="fa-solid fa-circle-check text-primary fa-xl"></i>
+                                @endif
+                            </td>
+                            {{-- Kolom 5 - Aksi --}}
+                            <td>
+                                <div class="btn-group">
+                                    <a href="{{ url('admin/edit-user/'.$user->id) }}"  class="btn btn-warning">
+                                        <i class="fa-solid fa-pen-to-square fa-fw"></i>
+                                    </a>
+                                    @if ($user->id != Auth::user()->id) {{--Biar tidak bisa hapus akun sendiri--}}
+                                        <form method="POST" action="{{ route('user.delete', $user->id) }}">
+                                            @csrf
+                                            <input name="_method" type="hidden" value="DELETE">
+                                            <button type="button" class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
+                                                <i class="fa-solid fa-trash fa-fw"></i>Hapus
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -141,5 +122,26 @@
                 });
             }).draw();
         } );
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script type="text/javascript">
+            $('.show_confirm').click(function(event) {
+                var form =  $(this).closest("form");
+                var name = $(this).data("name");
+                event.preventDefault();
+                swal({
+                    title: `Apakah anda yakin ingin menghapus Akun itu?`,
+                    text: "Jika kamu hapus, akun itu akan hilang selamanya.",
+                    icon: "warning",
+                    buttons: ["Batal", "Hapus!"],
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    form.submit();
+                }
+                });
+            });
+
     </script>
 @stop

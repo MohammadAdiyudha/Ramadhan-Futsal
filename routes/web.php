@@ -53,5 +53,5 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::post('admin/update-user/{id}',  [App\Http\Controllers\UsersController::class, 'update']); //route untuk mengupdate data ke database
 
     // Menghapus Data User
-    Route::get('admin/hapus-user/{id}',  [App\Http\Controllers\UsersController::class, 'hapus']);
+    Route::delete('admin/hapus-user/{id}',  [App\Http\Controllers\UsersController::class, 'hapus'])->name('user.delete');
 });

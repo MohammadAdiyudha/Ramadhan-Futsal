@@ -54,4 +54,8 @@ Route::group(['middleware' => 'is_admin'], function () {
 
     // Menghapus Data User
     Route::delete('admin/hapus-user/{id}',  [App\Http\Controllers\UsersController::class, 'hapus'])->name('user.delete');
+
+    // Untuk menampilkan form password dan ganti password
+Route::get('/changePassword', [App\Http\Controllers\UsersController::class, 'showChangePasswordGet'])->name('changePasswordGet');
+Route::post('/changePassword', [App\Http\Controllers\UsersController::class, 'changePasswordPost'])->name('changePasswordPost');
 });

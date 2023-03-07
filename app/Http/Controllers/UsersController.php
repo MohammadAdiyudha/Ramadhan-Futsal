@@ -7,7 +7,7 @@ use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
@@ -25,7 +25,14 @@ class UsersController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $user = User::find($id);
+
+        // Validasi email unique, dengan kondisi abaikan id yang diedit
+        $this->validate($request, [
+            'email' => ['required', Rule::unique('users')->ignore($user->id)],
+        ]);
+
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->is_admin = $request->input('role');

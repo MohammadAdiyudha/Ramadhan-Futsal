@@ -10,9 +10,9 @@
     <blockquote class="quote-olive">
         <h5 class="text-olive">Tips!</h5>
         <p>
-            <i class="fa-solid fa-pen-to-square fa-fw"></i> edit untuk mengubah data dan verifikasi manual
+            <i class="fa-solid fa-pen-to-square fa-fw"></i> <b>Edit</b> untuk mengubah data dan verifikasi manual
             <br>
-            <i class="fa-solid fa-trash fa-fw"></i> hapus untuk menghapus data user tersebut
+            <i class="fa-solid fa-trash fa-fw"></i> <b>Hapus</b> untuk menghapus data user tersebut
         </p>
     </blockquote>
 
@@ -68,7 +68,7 @@
                                             @csrf
                                             <input name="_method" type="hidden" value="DELETE">
                                             <button type="button" class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
-                                                <i class="fa-solid fa-trash fa-fw"></i>Hapus
+                                                <i class="fa-solid fa-trash fa-fw"></i>
                                             </button>
                                         </form>
                                     @endif

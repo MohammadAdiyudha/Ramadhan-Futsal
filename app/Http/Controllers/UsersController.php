@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
+use Hash;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -57,5 +59,35 @@ class UsersController extends Controller
         $user->delete();
 
         return redirect('admin/data-user')->with('success','Hapus data berhasil');
+    }
+
+    // Menampilkan form password
+    public function showChangePasswordGet() {
+        return view('changePassword');
+    }
+
+    // Mengirim password baru & Validasi
+    public function changePasswordPost(Request $request) {
+        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error","Password lama tidak sesuai.");
+        }
+
+        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+            // Current password and new password same
+            return redirect()->back()->with("error","Password sekarang tidak bisa digunakan.");
+        }
+
+        $validatedData = $request->validate([
+            'current-password' => 'required',
+            'new-password' => 'required|string|min:8|confirmed',
+        ]);
+
+        //Change Password
+        $user = Auth::user();
+        $user->password = bcrypt($request->get('new-password'));
+        $user->save();
+
+        return redirect()->back()->with("success","Password berhasil diubah!");
     }
 }

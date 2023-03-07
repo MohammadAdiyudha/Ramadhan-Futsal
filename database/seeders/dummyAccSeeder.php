@@ -8,7 +8,7 @@ class dummyAccSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
+     * php artisan db:seed --class=dummyAccSeeder
      * @return void
      */
     public function run()

@@ -19,5 +19,7 @@
             {{ __('adminlte::adminlte.verify_request_another') }}
         </button>.
     </form>
-
+    <div>
+        <a href="{{route('logout_url')}}" class="btn btn-danger btn-block mt-3">Logout</a>
+    </div>
 @stop

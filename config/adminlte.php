@@ -326,7 +326,7 @@ return [
         // MENU User
         [
             'text' => 'Buat Reservasi',
-            'url'  => 'buat_reservasi',
+            'url'  => '/buat-reservasi',
             'can'  => 'user_area',
             'icon' => 'fa-sharp fa-solid fa-plus fa-fw',
         ],

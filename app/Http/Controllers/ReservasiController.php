@@ -23,14 +23,14 @@ class ReservasiController extends Controller
     {
         $reservasi = new Reservasi;
         $user = Auth::user();
-        $reservasi->reservasi_id = $user->id;
+        $reservasi->user_id = $user->id;
         $reservasi->no_hp = $request->input('no_hp');
         $reservasi->tanggal = $request->input('tanggal');
         $reservasi->jam_awal = $request->input('jam_awal');
         $reservasi->jam_akhir = $request->input('jam_akhir');
         $reservasi->lama = $request->input('lama');
         $reservasi->harga = $request->input('harga');
-        $reservasi->status = $request->input('status');
+        $reservasi->status = "Pending";
         $reservasi->save();
         return redirect()->back()->with('status','Reservasi Berhasil Dibuat');
     }

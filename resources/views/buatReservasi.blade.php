@@ -21,24 +21,32 @@
                 </div>
                 <div class="card-body">
 
-                    <form action="{{ url('add-reservasi') }}" method="POST">
+                    <form action="{{ url('buat-reservasi') }}" method="POST">
                         @csrf
-
+                        <p>{{Auth::user()->id}}</p>
                         <div class="form-group mb-3">
-                            <label for="">Student Name</label>
-                            <input type="text" name="name" class="form-control">
+                            <label for="">No HP</label>
+                            <input type="text" name="no_hp" class="form-control">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="">Student Email</label>
-                            <input type="text" name="email" class="form-control">
+                            <label for="">Tanggal</label>
+                            <input type="date" name="tanggal" class="form-control">
                         </div>
                         <div class="form-group mb-3">
                             <label for="">Student Course</label>
-                            <input type="text" name="course" class="form-control">
+                            <input type="time" name="jam_awal" min="09:00" max="18:00" required>
                         </div>
                         <div class="form-group mb-3">
                             <label for="">Student Section</label>
-                            <input type="text" name="section" class="form-control">
+                            <input type="time" name="jam_akhir" min="10:00" max="20:00" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="">Lama</label>
+                            <input type="number" name="lama" min="1" max="100">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="">Harga</label>
+                            <input type="number" name="harga">
                         </div>
                         <div class="form-group mb-3">
                             <button type="submit" class="btn btn-primary">Save Student</button>

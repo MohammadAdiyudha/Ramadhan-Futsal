@@ -28,10 +28,10 @@ class ReservasiController extends Controller
         $reservasi->tanggal = $request->input('tanggal');
         $reservasi->jam_awal = $request->input('jam_awal');
         $reservasi->jam_akhir = $request->input('jam_akhir');
-        $reservasi->lama = $request->input('lama');
+        $reservasi->durasi = $request->input('durasi');
         $reservasi->harga = $request->input('harga');
         $reservasi->status = "Pending";
         $reservasi->save();
-        return redirect()->back()->with('status','Reservasi Berhasil Dibuat');
+        return redirect()->back()->with('success','Reservasi Berhasil Dibuat');
     }
 }

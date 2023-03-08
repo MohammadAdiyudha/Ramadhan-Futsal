@@ -20,7 +20,7 @@ class CreateReservasisTable extends Migration
             $table->date('tanggal');
             $table->time('jam_awal');
             $table->time('jam_akhir');
-            $table->integer('lama');
+            $table->integer('durasi');
             $table->biginteger('harga');
             $table->string('status');
             $table->timestamps();

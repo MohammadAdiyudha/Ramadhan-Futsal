@@ -19,6 +19,5 @@ class Reservasi extends Authenticatable implements MustVerifyEmail
         'jam_akhir',
         'lama',
         'harga',
-        'status',
     ];
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReservasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,3 +60,10 @@ Route::group(['middleware' => 'is_admin'], function () {
 Route::get('/changePassword', [App\Http\Controllers\UsersController::class, 'showChangePasswordGet'])->name('changePasswordGet');
 Route::post('/changePassword', [App\Http\Controllers\UsersController::class, 'changePasswordPost'])->name('changePasswordPost');
 });
+
+// Route::get('/buat-reservasi', function () {
+//     return view('buatReservasi');
+// })->name('reservasi.buat');
+
+Route::get('buat-reservasi', [ReservasiController::class, 'create']);
+Route::post('buat-reservasi', [ReservasiController::class, 'store']);

@@ -41,9 +41,9 @@
                             {{-- Kolom - Status --}}
                             <td class="">{{ $reservasi->status }}</td>
                             {{-- Kolom - Tanggal --}}
-                            <td class=""><b>{{$reservasi->tanggal}}</b> <i>{{ $reservasi->jam_awal }}-{{ $reservasi->jam_akhir }}</i></td>
+                            <td class=""><b>{{$reservasi->tanggal}}</b><br><i>{{ $reservasi->jam_awal }}-{{ $reservasi->jam_akhir }}</i></td>
                             {{-- Kolom - Harga --}}
-                            <td class="">Rp {{ $reservasi->harga }} ({{ $reservasi->durasi }} Jam)</td>
+                            <td class="">Rp {{ $reservasi->harga }}<br>({{ $reservasi->durasi }} Jam)</td>
                             {{-- Kolom - No HP --}}
                             <td class="">{{ $reservasi->no_hp }}</td>
                             {{-- Kolom - Reservasi ID --}}
@@ -51,12 +51,17 @@
                             {{-- Kolom - Aksi --}}
                             <td>
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-success">
-                                        <i class="fa-solid fa-cart-shopping"></i>
-                                    </button>
-                                    <a href=""  class="btn btn-warning">
-                                        <i class="fa-solid fa-pen-to-square fa-fw"></i>
-                                    </a>
+                                    {{-- Aksi khusus USER --}}
+                                    @if (Auth::user()->is_admin == 0)
+                                        <button type="button" class="btn btn-success">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                        </button>
+                                        <a href=""  class="btn btn-warning">
+                                            <i class="fa-solid fa-pen-to-square fa-fw"></i>
+                                        </a>
+                                    @endif
+
+                                    {{-- AKSI SEMUA ROLE --}}
                                     <form method="POST" action="">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
@@ -86,16 +91,16 @@
     <script>
         $(document).ready( function () {
             var t = $('#user_table').DataTable({
+
                 columnDefs: [
                     {
                         searchable: false,
                         orderable: false,
-                        targets: 0, //No tidak bisa disorting dan search
+                        targets: [0,6], //No dan Aksi tidak bisa disorting dan search
                     },
-                    { orderable: false, targets: 5 }, //Aksi tidak bisa disorting
-
                     { className: "align-middle", "targets": [ 0,1,2,3,4,5,6 ] }, //Vertical Alignment
                     { className: "text-center", "targets": [ 0,1,5,6 ] }, //Horizontal Alignment
+                    { "width": "5%", "targets": 5 },
                 ],
                 order: [[2, 'asc']], // Order dari Tanggal
                 language: { // Ubah bahasa tabel ke indonesia

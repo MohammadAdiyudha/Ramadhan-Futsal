@@ -333,7 +333,7 @@ return [
         // MENU ADMIN
         [
             'text' => 'Data Reservasi',
-            'url'  => 'data_reservasi',
+            'url'  => 'data-reservasi',
             'can'  => ['admin_area','user_area'],
             'icon' => 'fa-solid fa-book-bookmark fa-fw',
         ],

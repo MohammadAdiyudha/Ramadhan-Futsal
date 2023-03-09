@@ -57,8 +57,11 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::delete('admin/hapus-user/{id}',  [App\Http\Controllers\UsersController::class, 'hapus'])->name('user.delete');
 
     // Untuk menampilkan form password dan ganti password
-Route::get('/changePassword', [App\Http\Controllers\UsersController::class, 'showChangePasswordGet'])->name('changePasswordGet');
-Route::post('/changePassword', [App\Http\Controllers\UsersController::class, 'changePasswordPost'])->name('changePasswordPost');
+    Route::get('/changePassword', [App\Http\Controllers\UsersController::class, 'showChangePasswordGet'])->name('changePasswordGet');
+    Route::post('/changePassword', [App\Http\Controllers\UsersController::class, 'changePasswordPost'])->name('changePasswordPost');
+
+    // Tampilan data Reservasi - User
+    // Route::get('data-reservasi', [ReservasiController::class, 'indexAdmin']);
 });
 
 // Route::get('/buat-reservasi', function () {
@@ -67,3 +70,7 @@ Route::post('/changePassword', [App\Http\Controllers\UsersController::class, 'ch
 
 Route::get('buat-reservasi', [ReservasiController::class, 'create']);
 Route::post('buat-reservasi', [ReservasiController::class, 'store']);
+
+// Tampilan data Reservasi - User
+Route::get('data-reservasi', [ReservasiController::class, 'indexUser']);
+?>

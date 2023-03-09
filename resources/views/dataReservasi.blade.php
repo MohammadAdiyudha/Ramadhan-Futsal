@@ -39,7 +39,36 @@
                             {{-- Kolom - No --}}
                             <td></td>
                             {{-- Kolom - Status --}}
-                            <td class="">{{ $reservasi->status }}</td>
+                            <td class="">
+                                {{-- Switch untuk membedakan warna text sesuai status --}}
+                                @switch($reservasi->status)
+                                    @case('Pending')
+                                        <div class="badge badge-secondary text-wrap" style="width: 5rem;">
+                                            Pending
+                                        </div>
+                                        @break
+                                    @case('Menunggu Pembayaran')
+                                        <div class="badge badge-warning text-wrap" style="width: 5rem;">
+                                            Menunggu Pembayaran
+                                        </div>
+                                        @break
+                                    @case('Proses Acc Admin')
+                                        <div class="badge badge-primary text-wrap" style="width: 5rem;">
+                                            Proses Acc Admin
+                                        </div>
+                                        @break
+                                    @case('Berhasil')
+                                        <div class="badge badge-success text-wrap" style="width: 5rem;">
+                                            Berhasil
+                                        </div>
+                                        @break
+                                    @case('Ditolak')
+                                        <div class="badge badge-danger text-wrap" style="width: 5rem;">
+                                            Ditolak
+                                        </div>
+                                        @break
+                                @endswitch
+                            </td>
                             {{-- Kolom - Tanggal --}}
                             <td class=""><b>{{$reservasi->tanggal}}</b><br><i>{{ $reservasi->jam_awal }}-{{ $reservasi->jam_akhir }}</i></td>
                             {{-- Kolom - Harga --}}
@@ -101,6 +130,7 @@
                     { className: "align-middle", "targets": [ 0,1,2,3,4,5,6 ] }, //Vertical Alignment
                     { className: "text-center", "targets": [ 0,1,5,6 ] }, //Horizontal Alignment
                     { "width": "5%", "targets": 5 },
+                    { "width": "5%", "targets": 1 },
                 ],
                 order: [[2, 'asc']], // Order dari Tanggal
                 language: { // Ubah bahasa tabel ke indonesia

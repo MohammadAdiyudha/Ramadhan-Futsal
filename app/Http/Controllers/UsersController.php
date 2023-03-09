@@ -63,7 +63,7 @@ class UsersController extends Controller
 
     // Menampilkan form password
     public function showChangePasswordGet() {
-        return view('changePassword');
+        return view('auth.passwords.changePassword');
     }
 
     // Mengirim password baru & Validasi

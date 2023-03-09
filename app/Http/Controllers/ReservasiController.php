@@ -5,13 +5,35 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Reservasi;
+use DB;
 
 class ReservasiController extends Controller
 {
-    //
-    // public function index() {
-    //     $reservasi = DB::select('select * from reservasis');
-    //     return view('reservasi.tampil',['reservasis'=>$reservasi]);
+    // Tampil Reservasi Sisi USER
+    public function indexUser() {
+        $user_table = Auth::user();
+        $user_getID = $user_table->id;
+        if($user_table->is_admin==1) {
+            $reservasi = DB::table('reservasis')
+                        ->select('*')
+                        ->get();
+            return view('dataReservasi',['reservasis'=>$reservasi]);
+        } else {
+
+            $reservasi = DB::table('reservasis')
+            ->select('*')
+            ->where('user_id','=',$user_getID)
+            ->get();
+            return view('dataReservasi',['reservasis'=>$reservasi]);
+        }
+     }
+
+     // Tampil Reservasi Sisi ADMIN
+    // public function indexAdmin() {
+    //     $reservasi = DB::table('reservasis')
+    //                     ->select('*')
+    //                     ->get();
+    //     return view('dataReservasi',['reservasis'=>$reservasi]);
     //  }
 
     public function create()

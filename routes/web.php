@@ -40,9 +40,7 @@ Route::group(['middleware' => 'is_admin'], function () {
         return redirect()->route('admin.home');
     });
 
-    // Route::get('admin/data_user', function () {
-    //     return view('admin/dataUser');
-    // })->name('admin.dataUser');
+    // Menu Data User
     Route::get('admin/data-user', [App\Http\Controllers\UsersController::class, 'index']);
 
     Route::get('test', function () {
@@ -56,21 +54,18 @@ Route::group(['middleware' => 'is_admin'], function () {
     // Menghapus Data User
     Route::delete('admin/hapus-user/{id}',  [App\Http\Controllers\UsersController::class, 'hapus'])->name('user.delete');
 
-    // Untuk menampilkan form password dan ganti password
-    Route::get('/changePassword', [App\Http\Controllers\UsersController::class, 'showChangePasswordGet'])->name('changePasswordGet');
-    Route::post('/changePassword', [App\Http\Controllers\UsersController::class, 'changePasswordPost'])->name('changePasswordPost');
-
     // Tampilan data Reservasi - User
-    // Route::get('data-reservasi', [ReservasiController::class, 'indexAdmin']);
+    Route::get('admin/data-reservasi', [ReservasiController::class, 'indexAdmin']);
 });
 
-// Route::get('/buat-reservasi', function () {
-//     return view('buatReservasi');
-// })->name('reservasi.buat');
-
+// Menu Buat Reservasi
 Route::get('buat-reservasi', [ReservasiController::class, 'create']);
 Route::post('buat-reservasi', [ReservasiController::class, 'store']);
 
 // Tampilan data Reservasi - User
 Route::get('data-reservasi', [ReservasiController::class, 'indexUser']);
+
+// Untuk menampilkan form password dan ganti password
+Route::get('/changePassword', [App\Http\Controllers\UsersController::class, 'showChangePasswordGet'])->name('changePasswordGet');
+Route::post('/changePassword', [App\Http\Controllers\UsersController::class, 'changePasswordPost'])->name('changePasswordPost');
 ?>

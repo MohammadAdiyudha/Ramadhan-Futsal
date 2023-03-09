@@ -13,28 +13,20 @@ class ReservasiController extends Controller
     public function indexUser() {
         $user_table = Auth::user();
         $user_getID = $user_table->id;
-        if($user_table->is_admin==1) {
-            $reservasi = DB::table('reservasis')
+        $reservasi = DB::table('reservasis')
                         ->select('*')
+                        ->where('user_id','=',$user_getID)
                         ->get();
-            return view('dataReservasi',['reservasis'=>$reservasi]);
-        } else {
-
-            $reservasi = DB::table('reservasis')
-            ->select('*')
-            ->where('user_id','=',$user_getID)
-            ->get();
-            return view('dataReservasi',['reservasis'=>$reservasi]);
-        }
+                        return view('dataReservasi',['reservasis'=>$reservasi]);
      }
 
      // Tampil Reservasi Sisi ADMIN
-    // public function indexAdmin() {
-    //     $reservasi = DB::table('reservasis')
-    //                     ->select('*')
-    //                     ->get();
-    //     return view('dataReservasi',['reservasis'=>$reservasi]);
-    //  }
+    public function indexAdmin() {
+        $reservasi = DB::table('reservasis')
+                        ->select('*')
+                        ->get();
+        return view('dataReservasi',['reservasis'=>$reservasi]);
+     }
 
     public function create()
     {

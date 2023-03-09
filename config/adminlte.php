@@ -330,11 +330,17 @@ return [
             'can'  => 'user_area',
             'icon' => 'fa-sharp fa-solid fa-plus fa-fw',
         ],
-        // MENU ADMIN
         [
             'text' => 'Data Reservasi',
             'url'  => 'data-reservasi',
-            'can'  => ['admin_area','user_area'],
+            'can'  => 'user_area',
+            'icon' => 'fa-solid fa-book-bookmark fa-fw',
+        ],
+        // MENU ADMIN
+        [
+            'text' => 'Data Reservasi',
+            'url'  => 'admin/data-reservasi',
+            'can'  => 'admin_area',
             'icon' => 'fa-solid fa-book-bookmark fa-fw',
         ],
         [

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Ganti Password')
+@section('title', 'Ubah Password')
 
 @section('content_header')
     <h1>Ganti Password</h1>

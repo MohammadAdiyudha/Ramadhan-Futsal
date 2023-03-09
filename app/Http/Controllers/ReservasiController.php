@@ -48,4 +48,9 @@ class ReservasiController extends Controller
         $reservasi->save();
         return redirect()->back()->with('success','Reservasi Berhasil Dibuat');
     }
+
+    public function hapus($reservasi_id){
+        DB::table('reservasis')->where('reservasi_id', $reservasi_id)->delete();
+        return redirect()->back()->with('success','Hapus data berhasil');
+    }
 }

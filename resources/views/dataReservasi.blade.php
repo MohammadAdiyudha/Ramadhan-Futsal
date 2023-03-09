@@ -78,26 +78,78 @@
                             {{-- Kolom - Reservasi ID --}}
                             <td class="">{{ $reservasi->reservasi_id }}</td>
                             {{-- Kolom - Aksi --}}
+                            {{-- Disabled sesuai status --}}
                             <td>
                                 <div class="btn-group">
-                                    {{-- Aksi khusus USER --}}
-                                    @if (Auth::user()->is_admin == 0)
-                                        <button type="button" class="btn btn-success">
-                                            <i class="fa-solid fa-cart-shopping"></i>
+                                    {{-- Aksi Conditional --}}
+                                    {{-- Admin Side --}}
+                                    @if (Auth::user()->is_admin == 1)
+                                        {{-- Button Tampilkan Pembayaran --}}
+                                        {{-- Hanya untuk status Proses Acc Admin dan Berhasil --}}
+                                        <button type="button" class="btn
+                                                @if ($reservasi->status == 'Proses Acc Admin'
+                                                or $reservasi->status == 'Berhasil')
+                                                    btn-success"
+                                                @else
+                                                    btn-secondary" disabled
+                                        @endif>
+                                            <i class="fa-solid fa-money-bill-transfer"></i>
                                         </button>
-                                        <a href=""  class="btn btn-warning">
+
+                                        {{-- Button Edit untuk mengubah status --}}
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pen-to-square fa-fw"></i>
+                                        </button>
+
+                                        {{-- Button Hapus --}}
+                                        <form method="POST" action="{{ route('reservasi.delete', $reservasi->reservasi_id) }}">
+                                            @csrf
+                                            <input name="_method" type="hidden" value="DELETE">
+                                            <button type="button" class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
+                                                <i class="fa-solid fa-trash fa-fw"></i>
+                                            </button>
+                                        </form>
+                                    @else
+
+                                        {{-- User Side --}}
+                                        {{-- Pembayaran --}}
+                                        {{-- Hanya bisa bayar jika status Menunggu Pembayaran--}}
+                                        <button type="button" class="btn
+                                                @if ($reservasi->status != 'Menunggu Pembayaran')
+                                                    btn-secondary" disabled
+                                                @else
+                                                    btn-success"
+                                                @endif>
+                                            <i class="fa-solid fa-money-bill-transfer"></i>
+                                        </button>
+
+                                        {{-- Edit Reservasi --}}
+                                        {{-- Hanya bisa dilakukan di status Pending dan Menunggu Pembayaran --}}
+                                        <a href=""  class="btn
+                                            @if ($reservasi->status == 'Pending' or $reservasi->status == 'Menunggu Pembayaran')
+                                                btn-warning"
+                                            @else
+                                                btn-secondary disabled" aria-disabled="true"
+                                            @endif>
                                             <i class="fa-solid fa-pen-to-square fa-fw"></i>
                                         </a>
-                                    @endif
 
-                                    {{-- AKSI SEMUA ROLE --}}
-                                    <form method="POST" action="">
-                                        @csrf
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button type="button" class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
-                                            <i class="fa-solid fa-trash fa-fw"></i>
-                                        </button>
-                                    </form>
+                                        {{-- Hapus Reservasi --}}
+                                        {{-- Clickable untuk status Pending, Menunggu Pembayaran, Ditolak --}}
+                                        <form method="POST" action="{{ route('reservasi.delete', $reservasi->reservasi_id) }}">
+                                            @csrf
+                                            <input name="_method" type="hidden" value="DELETE">
+                                                <button type="button" data-toggle="tooltip" title='Delete' class="btn
+                                                    @if ($reservasi->status == 'Proses Acc Admin'
+                                                        or $reservasi->status == 'Berhasil')
+                                                        btn-secondary" disabled
+                                                    @else
+                                                        btn-danger show_confirm"
+                                                    @endif>
+                                                    <i class="fa-solid fa-trash fa-fw"></i>
+                                                </button>
+                                        </form>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -157,7 +209,7 @@
                 event.preventDefault();
                 swal({
                     title: `Apakah anda yakin ingin menghapus reservasi itu?`,
-                    text: "Jika kamu hapus, akun itu akan hilang selamanya.",
+                    text: "Jika kamu hapus, data itu akan hilang selamanya.",
                     icon: "warning",
                     buttons: ["Batal", "Hapus!"],
                     dangerMode: true,

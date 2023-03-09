@@ -68,4 +68,7 @@ Route::get('data-reservasi', [ReservasiController::class, 'indexUser']);
 // Untuk menampilkan form password dan ganti password
 Route::get('/changePassword', [App\Http\Controllers\UsersController::class, 'showChangePasswordGet'])->name('changePasswordGet');
 Route::post('/changePassword', [App\Http\Controllers\UsersController::class, 'changePasswordPost'])->name('changePasswordPost');
+
+// Menghapus Data Reservasi
+Route::delete('hapus-reservasi/{reservasi_id}',  [ReservasiController::class, 'hapus'])->name('reservasi.delete');
 ?>

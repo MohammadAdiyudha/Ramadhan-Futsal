@@ -125,7 +125,7 @@
 
                                         {{-- Edit Reservasi --}}
                                         {{-- Hanya bisa dilakukan di status Pending dan Menunggu Pembayaran --}}
-                                        <a href=""  class="btn
+                                        <a href="{{url('edit-reservasi/'.$reservasi->reservasi_id)}}"  class="btn
                                             @if ($reservasi->status == 'Pending' or $reservasi->status == 'Menunggu Pembayaran')
                                                 btn-warning"
                                             @else

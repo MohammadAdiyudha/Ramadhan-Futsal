@@ -20,4 +20,11 @@ class Reservasi extends Authenticatable implements MustVerifyEmail
         'durasi',
         'harga',
     ];
+
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'reservasi_id';
 }

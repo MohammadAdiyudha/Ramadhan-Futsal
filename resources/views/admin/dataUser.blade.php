@@ -60,18 +60,25 @@
                             {{-- Kolom 5 - Aksi --}}
                             <td>
                                 <div class="btn-group">
+                                    {{-- Edit User --}}
                                     <a href="{{ url('admin/edit-user/'.$user->id) }}"  class="btn btn-warning">
                                         <i class="fa-solid fa-pen-to-square fa-fw"></i>
                                     </a>
-                                    @if ($user->id != Auth::user()->id) {{--Biar tidak bisa hapus akun sendiri--}}
-                                        <form method="POST" action="{{ route('user.delete', $user->id) }}">
-                                            @csrf
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <button type="button" class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
-                                                <i class="fa-solid fa-trash fa-fw"></i>
-                                            </button>
-                                        </form>
-                                    @endif
+
+                                    {{-- Hapus User --}}
+                                    {{-- Tidak bisa dilakukan oleh akun aktif --}}
+                                    <form method="POST" action="{{ route('user.delete', $user->id) }}">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button type="button" class="btn
+                                            @if ($user->id != Auth::user()->id)
+                                                btn-danger show_confirm" data-toggle="tooltip" title='Delete'
+                                            @else
+                                                btn-secondary" disabled
+                                            @endif>
+                                            <i class="fa-solid fa-trash fa-fw"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReservasiController;
+use App\Http\Controllers\PembayaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,4 +76,7 @@ Route::delete('hapus-reservasi/{reservasi_id}',  [ReservasiController::class, 'h
 // Mengubah Data Reservasi
 Route::get('edit-reservasi/{id}',  [ReservasiController::class, 'edit']); //route untuk ke halaman edit data
 Route::post('update-reservasi/{id}',  [ReservasiController::class, 'update']); //route untuk mengupdate data ke database
+
+// Pembayaran
+Route::post('pembayaran', [PembayaranController::class, 'store']);
 ?>

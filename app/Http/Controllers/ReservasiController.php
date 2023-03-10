@@ -37,16 +37,25 @@ class ReservasiController extends Controller
     {
         $reservasi = new Reservasi;
         $user = Auth::user();
-        $reservasi->user_id = $user->id;
-        $reservasi->no_hp = $request->input('no_hp');
-        $reservasi->tanggal = $request->input('tanggal');
-        $reservasi->jam_awal = $request->input('jam_awal');
-        $reservasi->jam_akhir = $request->input('jam_akhir');
-        $reservasi->durasi = $request->input('durasi');
-        $reservasi->harga = $request->input('harga');
-        $reservasi->status = "Pending";
-        $reservasi->save();
-        return redirect()->back()->with('success','Reservasi Berhasil Dibuat');
+        try {
+            $reservasi->user_id = $user->id;
+            $reservasi->no_hp = $request->input('no_hp');
+            $reservasi->tanggal = $request->input('tanggal');
+            $reservasi->jam_awal = $request->input('jam_awal');
+            $reservasi->jam_akhir = $request->input('jam_akhir');
+            $reservasi->durasi = $request->input('durasi');
+            $reservasi->harga = $request->input('harga');
+            $reservasi->status = "Pending";
+            $reservasi->save();
+            return redirect()->back()->with('success','Reservasi Berhasil Dibuat');
+        } catch(\Illuminate\Database\QueryException $e){
+            // Handling error duplicate
+            $errorCode = $e->errorInfo[1];
+            if($errorCode == '1062'){
+                return redirect()->back()->with('error','Jadwal Bentrok');
+            }
+        }
+
     }
 
     public function hapus($reservasi_id){

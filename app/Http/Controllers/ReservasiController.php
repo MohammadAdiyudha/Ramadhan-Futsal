@@ -37,6 +37,7 @@ class ReservasiController extends Controller
     {
         $reservasi = new Reservasi;
         $user = Auth::user();
+
         try {
             $reservasi->user_id = $user->id;
             $reservasi->no_hp = $request->input('no_hp');
@@ -48,11 +49,12 @@ class ReservasiController extends Controller
             $reservasi->status = "Pending";
             $reservasi->save();
             return redirect()->back()->with('success','Reservasi Berhasil Dibuat');
+
         } catch(\Illuminate\Database\QueryException $e){
             // Handling error duplicate
             $errorCode = $e->errorInfo[1];
             if($errorCode == '1062'){
-                return redirect()->back()->with('error','Jadwal Bentrok');
+                return redirect()->back()->with('error','Jadwal Bentrok! Silahkan cari jadwal lain');
             }
         }
 

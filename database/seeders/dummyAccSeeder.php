@@ -19,12 +19,17 @@ class dummyAccSeeder extends Seeder
                 'email' => 'admin1@gmail.com',
                 'password' => \Hash::make('123123123'),
                 'is_admin' => true,
+                'created_at' => now(),
+                'updated_at' => now()
+
             ],
             [
                 'name' => 'Admin Dummy 2',
                 'email' => 'admin2@gmail.com',
                 'password' => \Hash::make('123123123'),
                 'is_admin' => true,
+                'created_at' => now(),
+                'updated_at' => now()
             ],
 
             [
@@ -32,18 +37,24 @@ class dummyAccSeeder extends Seeder
                 'email' => 'user1@gmail.com',
                 'password' => \Hash::make('123123123'),
                 'is_admin' => false,
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'User Dummy 2',
                 'email' => 'user2@gmail.com',
                 'password' => \Hash::make('123123123'),
                 'is_admin' => false,
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'User Dummy 3',
                 'email' => 'user3@gmail.com',
                 'password' => \Hash::make('123123123'),
                 'is_admin' => false,
+                'created_at' => now(),
+                'updated_at' => now()
             ],
         ]);
     }

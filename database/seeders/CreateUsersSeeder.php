@@ -19,14 +19,18 @@ class CreateUsersSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'password' => \Hash::make('123123123'),
                 'is_admin' => true,
-                'email_verified_at'=> now()
+                'email_verified_at'=> now(),
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'User',
                 'email' => 'user@gmail.com',
                 'password' => \Hash::make('123123123'),
                 'is_admin' => false,
-                'email_verified_at' => now()
+                'email_verified_at' => now(),
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
     }

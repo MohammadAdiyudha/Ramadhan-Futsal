@@ -46,7 +46,7 @@ class ReservasiSeeder extends Seeder
             ],
             [   //Proses Acc Admin
                 'user_id' => '2',
-                'bayar_id' => NULL,
+                'bayar_id' => '2',
                 'no_hp' => '33333',
                 'tanggal' => Carbon::now()->addDays(7)->format('Y-m-d'),
                 'jam_awal' => '13:00:00',

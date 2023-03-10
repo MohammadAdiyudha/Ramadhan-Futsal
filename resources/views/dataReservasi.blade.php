@@ -172,7 +172,7 @@
                 </button>
                 </div>
                 <div class="modal-body mx-3">
-                    <form action="" method="POST">
+                    <form action="{{url('pembayaran')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row justify">
                             <div class="col">
@@ -183,13 +183,13 @@
                                 </div>
                                 {{-- Atas Nama Rekening --}}
                                 <div class="form-group row mb-2">
-                                    <label for="atasNamaRek" class="col-form-label">Atas Nama Rekening</label>
-                                    <input type="text" id="atasNamaRek" name="atasNamaRek" class="form-control" required>
+                                    <label for="atas_nama" class="col-form-label">Atas Nama Rekening</label>
+                                    <input type="text" id="atas_nama" name="atas_nama" class="form-control" required>
                                 </div>
                                 {{-- Jenis Pembayaran --}}
                                 <div class="form-group row mb-2">
-                                    <label for="jenisBayar" class="col-form-label">Jenis Pembayaran</label>
-                                    <select name="jenisBayar" id="jenisBayar" class="form-control">
+                                    <label for="jenis_bayar" class="col-form-label">Jenis Pembayaran</label>
+                                    <select name="jenis_bayar" id="jenis_bayar" class="form-control">
                                         <option value="Mandiri">Mandiri</option>
                                         <option value="Shopeepay">Shopeepay</option>
                                     </select>
@@ -198,8 +198,8 @@
                                 <div class="form-group row mb-2">
                                     <label for="" class="col-form-label">Bukti Pembayaran</label>
                                     <div class="custom-file">
-                                        <input type="file" id="buktiBayar" name="buktiBayar" class="w-auto custom-file-input" required>
-                                        <label class="custom-file-label" for="buktiBayar">Pilih file gambar atau pdf...</label>
+                                        <input type="file" id="bukti_bayar" name="bukti_bayar" class="w-auto custom-file-input" required>
+                                        <label class="custom-file-label" for="bukti_bayar">Pilih file gambar atau pdf...</label>
                                     </div>
                                 </div>
                             </div>
@@ -287,5 +287,15 @@
             var myReservasiID = $(this).attr('data-id');
             $(".modal-body #reservasiID_bayar").val( myReservasiID );
         });
+    </script>
+
+    <script>
+        $('#bukti_bayar').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                var cleanFileName = fileName.replace('C:\\fakepath\\', " ");
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(cleanFileName);
+            })
     </script>
 @stop

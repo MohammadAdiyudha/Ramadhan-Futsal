@@ -114,12 +114,12 @@
                                         {{-- User Side --}}
                                         {{-- Pembayaran --}}
                                         {{-- Hanya bisa bayar jika status Menunggu Pembayaran--}}
-                                        <button type="button" class="btn
+                                        <button type="button" class="btn modalBayar
                                                 @if ($reservasi->status != 'Menunggu Pembayaran')
                                                     btn-secondary" disabled
                                                 @else
-                                                    btn-success"
-                                                @endif>
+                                                    btn-success" data-toggle="modal" data-target="#modalBayar" data-id='{{ $reservasi->reservasi_id }}'
+                                                @endif >
                                             <i class="fa-solid fa-money-bill-transfer"></i>
                                         </button>
 
@@ -159,16 +159,72 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalBayar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload Pembayaran</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <form action="" method="POST">
+                        @csrf
+                        <div class="row justify">
+                            <div class="col">
+                                {{-- Reservasi ID (KHUSUS BAYAR) --}}
+                                <div class="form-group row mb-2">
+                                    <label for="reservasiID_bayar" class="col-form-label">Reservasi ID</label>
+                                    <input type="number" id="reservasiID_bayar" name="reservasiID_bayar" class="form-control" readonly required>
+                                </div>
+                                {{-- Atas Nama Rekening --}}
+                                <div class="form-group row mb-2">
+                                    <label for="atasNamaRek" class="col-form-label">Atas Nama Rekening</label>
+                                    <input type="text" id="atasNamaRek" name="atasNamaRek" class="form-control" required>
+                                </div>
+                                {{-- Jenis Pembayaran --}}
+                                <div class="form-group row mb-2">
+                                    <label for="jenisBayar" class="col-form-label">Jenis Pembayaran</label>
+                                    <select name="jenisBayar" id="jenisBayar" class="form-control">
+                                        <option value="Mandiri">Mandiri</option>
+                                        <option value="Shopeepay">Shopeepay</option>
+                                    </select>
+                                </div>
+                                {{-- Upload Bukti Pembayaran --}}
+                                <div class="form-group row mb-2">
+                                    <label for="" class="col-form-label">Bukti Pembayaran</label>
+                                    <div class="custom-file">
+                                        <input type="file" id="buktiBayar" name="buktiBayar" class="w-auto custom-file-input" required>
+                                        <label class="custom-file-label" for="buktiBayar">Pilih file gambar atau pdf...</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                    </form>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
 @stop
 
 @section('js')
     <script src="https://kit.fontawesome.com/f68e3b150b.js" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+
+    {{-- Data Table Konfigurasi --}}
     <script>
         $(document).ready( function () {
             var t = $('#user_table').DataTable({
@@ -202,6 +258,8 @@
         } );
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+
+    {{-- Delete Confirmation - Sweet Alert 2  --}}
     <script type="text/javascript">
             $('.show_confirm').click(function(event) {
                 var form =  $(this).closest("form");
@@ -221,5 +279,13 @@
                 });
             });
 
+    </script>
+
+    {{-- Modal Bayar --}}
+    <script>
+         $('.modalBayar').click(function(event) {
+            var myReservasiID = $(this).attr('data-id');
+            $(".modal-body #reservasiID_bayar").val( myReservasiID );
+        });
     </script>
 @stop

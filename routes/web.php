@@ -31,11 +31,13 @@ Auth::routes();
 //verifikasi email user
 Auth::routes(['verify' => true]);
 
-Route::get('/home', \App\Http\Controllers\HomeController::class)->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Menu Jadwal
+Route::get('/jadwal', \App\Http\Controllers\JadwalController::class)->name('jadwal');
 
 // Route Admin Home & Cek Admin atau bukan
 Route::group(['middleware' => 'is_admin'], function () {
-    Route::get('admin/home', \App\Http\Controllers\HomeController::class)->name('admin.home');
+    Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home');
 
     Route::get('admin', function () {
         return redirect()->route('admin.home');

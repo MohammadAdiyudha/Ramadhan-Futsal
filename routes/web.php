@@ -44,10 +44,6 @@ Route::group(['middleware' => 'is_admin'], function () {
     // Menu Data User
     Route::get('admin/data-user', [App\Http\Controllers\UsersController::class, 'index']);
 
-    Route::get('test', function () {
-        return view('test');
-    });
-
     // Mengubah Data User
     Route::get('admin/edit-user/{id}',  [App\Http\Controllers\UsersController::class, 'edit']); //route untuk ke halaman edit data
     Route::post('admin/update-user/{id}',  [App\Http\Controllers\UsersController::class, 'update']); //route untuk mengupdate data ke database

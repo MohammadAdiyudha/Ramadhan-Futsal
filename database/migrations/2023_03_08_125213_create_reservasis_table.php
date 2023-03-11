@@ -16,7 +16,6 @@ class CreateReservasisTable extends Migration
         Schema::create('reservasis', function (Blueprint $table) {
             $table->id('reservasi_id');
             $table->bigInteger('user_id');
-            $table->bigInteger('bayar_id')->nullable();
             $table->string('no_hp');
             $table->date('tanggal');
             $table->time('jam_awal');

@@ -30,7 +30,7 @@
                             {{-- Buat cek id aktif bisa atau tidak --}}
                             {{-- <p>{{Auth::user()->id}}</p> --}}
                             <div class="form-group row mb-4">
-                                <label for="" class="col-sm-2 col-form-label">No HP</label>
+                                <label for="" class="col-sm-2 col-form-label">No HP / WA</label>
                                 <input type="text" name="no_hp" class="form-control col-sm-10" required>
                             </div>
                             <div class="form-group row mb-4">

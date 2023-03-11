@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Data User')
+@section('title', 'Data Reservasi')
 
 @section('content_header')
-    <h1>Data Akun User</h1>
+    <h1>Data Reservasi</h1>
 @stop
 
 @section('content')
@@ -14,7 +14,7 @@
             <br>
             <i class="fa-solid fa-pen-to-square fa-fw"></i> <b>Edit</b> untuk mengubah data
             <br>
-            <i class="fa-solid fa-trash fa-fw"></i> <b>Hapus</b> untuk menghapus data user tersebut
+            <i class="fa-solid fa-trash fa-fw"></i> <b>Hapus</b> untuk menghapus data reservasi tersebut
         </p>
     </blockquote>
 

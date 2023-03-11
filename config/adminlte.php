@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Futsal Ramadhan',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -366,11 +366,6 @@ return [
         [
             'text' => 'log_out',
             'url'  => 'logout',
-            'icon' => 'fa-solid fa-right-from-bracket fa-fw',
-        ],
-        [
-            'text' => 'Testing Page',
-            'url'  => 'test',
             'icon' => 'fa-solid fa-right-from-bracket fa-fw',
         ],
         // [

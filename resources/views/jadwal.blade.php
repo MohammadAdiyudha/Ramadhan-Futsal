@@ -1,13 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Jadwal Reservasi')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Jadwal Reservasi</h1>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful user panel.</p>
     <div class="card">
         <div class="card-body">
             <div id='calendar'></div>

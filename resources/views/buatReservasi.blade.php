@@ -103,7 +103,7 @@
     <script>
         $(document).ready(function(){
             $('input.timepickerMulai').timepicker({
-                timeFormat: 'HH:mm',
+                timeFormat: 'HH:mm:ss',
                 interval: 60,
                 minTime: '9',
                 maxTime: '8:00pm',

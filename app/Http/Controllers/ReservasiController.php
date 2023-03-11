@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Reservasi;
+use App\Models\Pembayaran;
 use DB;
 
 class ReservasiController extends Controller
@@ -95,5 +96,15 @@ class ReservasiController extends Controller
         $reservasi->update();
 
         return redirect("data-reservasi")->with('success','Ubah data berhasil');
+    }
+
+
+    public function lihatBayar($id)
+    {
+        $pembayaran   = DB::table('pembayarans')
+                        ->where('reservasi_id','=',$id)
+                        ->first();
+        return view('lihatBayar')->with('pembayaran', $pembayaran);
+
     }
 }

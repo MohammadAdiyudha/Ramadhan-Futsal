@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CreateUsersSeeder::class);
         $this->call(dummyAccSeeder::class);
         $this->call(ReservasiSeeder::class);
+        $this->call(PembayaranSeeder::class);
     }
 }

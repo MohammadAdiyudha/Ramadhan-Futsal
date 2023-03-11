@@ -12,9 +12,11 @@ class PembayaranController extends Controller
 {
     public function store(Request $request)
     {
-        $pembayaran = new Pembayaran;
-        $reservasi = new Reservasi;
+
         try {
+            // Proses Insert ke Table pembayarans
+            $pembayaran = new Pembayaran;
+            $pembayaran->reservasi_id = $request->input('reservasiID_bayar');
             $pembayaran->atas_nama = $request->input('atas_nama');
             $pembayaran->jenis_bayar = $request->input('jenis_bayar');
 
@@ -28,9 +30,13 @@ class PembayaranController extends Controller
             }
 
             $pembayaran->save();
-            // $reservasi->bayar_id = $request->input('reservasiID_bayar');
-            // $reservasi->status = 'Proses Acc Admin';
-            // $reservasi->update();
+
+            // Proses Update ke Table reservasis
+            if(!is_null($pembayaran)) {
+                $reservasi = Reservasi::find($request->input('reservasiID_bayar'));
+                $reservasi->status = 'Proses Acc Admin';
+                $reservasi->update();
+            }
             return redirect()->back()->with('success','Pembayaran sudah terkirim! Silahkan tunggu konfirmasi Admin');
 
         } catch(\Illuminate\Database\QueryException $e){

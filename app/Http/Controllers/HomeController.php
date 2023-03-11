@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservasi;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -16,23 +17,24 @@ class HomeController extends Controller
         $this->middleware(['auth','verified']);
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    // Untuk memanggil otomatis Full Calendar
+    public function __invoke()
     {
-        return view('home');
+        $events = [];
+
+        $reservasis = Reservasi::where('status','Berhasil')
+                                ->get();
+
+        foreach ($reservasis as $reservasi) {
+            $events[] = [
+                'title' => 'Booked',
+                'start' => $reservasi->tanggal . " $reservasi->jam_awal",
+                'end' => $reservasi->tanggal . " $reservasi->jam_akhir",
+            ];
+        }
+
+        return view('home', compact('events'));
+        // Debug array cek isi dd($events);
     }
 
-    /**
-     * Show the ADMIN dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function adminHome()
-    {
-        return view('admin/adminHome');
-    }
 }

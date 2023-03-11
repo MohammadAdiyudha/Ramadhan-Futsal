@@ -77,4 +77,7 @@ Route::post('update-reservasi/{id}',  [ReservasiController::class, 'update']); /
 
 // Pembayaran
 Route::post('pembayaran', [PembayaranController::class, 'store']);
+
+// Melihat Bukti Pembayaran
+Route::get('lihat-pembayaran/{id}',  [ReservasiController::class, 'lihatBayar']);
 ?>

@@ -81,8 +81,8 @@
                                 </div>
                             </div>
                             <div class="form-group mb-4">
-                                <button type="submit" class="btn btn-primary">Submit</button>
                                 <button type="button" id="hitung" class="btn btn-success px-3">Hitung Harga</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
 
                         </form>
@@ -118,7 +118,7 @@
     <script>
         $(document).ready(function(){
             $('input.timepickerAkhir').timepicker({
-                timeFormat: 'HH:mm',
+                timeFormat: 'HH:mm:ss',
                 interval: 60,
                 minTime: '10',
                 maxTime: '9:00pm',

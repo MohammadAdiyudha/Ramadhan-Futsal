@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 class Pembayaran extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
+    protected $table = "pembayarans";
     protected $fillable = [
         'atas_nama',
         'jenis_bayar',
@@ -23,4 +24,8 @@ class Pembayaran extends Authenticatable implements MustVerifyEmail
      * @var string
      */
     protected $primaryKey = 'bayar_id';
+    public function reservasi()
+    {
+    	return $this->belongsTo('App\Models\\Reservasi');
+    }
 }

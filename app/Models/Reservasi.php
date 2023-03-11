@@ -12,6 +12,7 @@ class Reservasi extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = "reservasis";
     protected $fillable = [
         'no_hp',
         'tanggal',
@@ -27,4 +28,8 @@ class Reservasi extends Authenticatable implements MustVerifyEmail
      * @var string
      */
     protected $primaryKey = 'reservasi_id';
+    public function pembayaran()
+    {
+    	return $this->hasOne('App\Models\\Pembayaran');
+    }
 }

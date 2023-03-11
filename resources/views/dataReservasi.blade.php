@@ -86,7 +86,7 @@
                                     @if (Auth::user()->is_admin == 1)
                                         {{-- Button Tampilkan Pembayaran --}}
                                         {{-- Hanya untuk status Proses Acc Admin dan Berhasil --}}
-                                        <button type="button" class="btn
+                                        <a href="{{url('lihat-pembayaran/'.$reservasi->reservasi_id)}}" class="btn
                                                 @if ($reservasi->status == 'Proses Acc Admin'
                                                 or $reservasi->status == 'Berhasil')
                                                     btn-success"
@@ -94,7 +94,7 @@
                                                     btn-secondary" disabled
                                         @endif>
                                             <i class="fa-solid fa-money-bill-transfer"></i>
-                                        </button>
+                                         </a>
 
                                         {{-- Button Edit untuk mengubah status --}}
                                         <button type="button" class="btn btn-warning">
@@ -161,7 +161,7 @@
     </div>
 
 
-    <!-- Modal -->
+    <!-- Modal - Upload Pembayaran -->
     <div class="modal fade" id="modalBayar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -190,8 +190,9 @@
                                 <div class="form-group row mb-2">
                                     <label for="jenis_bayar" class="col-form-label">Jenis Pembayaran</label>
                                     <select name="jenis_bayar" id="jenis_bayar" class="form-control">
-                                        <option value="Mandiri">Mandiri</option>
-                                        <option value="Shopeepay">Shopeepay</option>
+                                        <option value="Mandiri">Mandiri : 113-556-33743</option>
+                                        <option value="Shopeepay">Shopeepay : 0811223344</option>
+                                        <option value="Gopay">Gopay : 0811223344</option>
                                     </select>
                                 </div>
                                 {{-- Upload Bukti Pembayaran --}}
@@ -282,6 +283,7 @@
     </script>
 
     {{-- Modal Bayar --}}
+    {{-- Passing data Reservasi dari tabel reservasis ke inputan modal --}}
     <script>
          $('.modalBayar').click(function(event) {
             var myReservasiID = $(this).attr('data-id');
@@ -289,6 +291,7 @@
         });
     </script>
 
+    {{-- Mengubah label menjadi nama file secara otomatis --}}
     <script>
         $('#bukti_bayar').on('change',function(){
                 //get the file name

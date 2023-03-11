@@ -18,7 +18,6 @@ class ReservasiSeeder extends Seeder
             // USER ID 1 - Bukan Dummy
             [   //Pending
                 'user_id' => '2',
-                'bayar_id' => NULL,
                 'no_hp' => '11111',
                 'tanggal' => Carbon::now()->addDays(3)->format('Y-m-d'),
                 'jam_awal' => '09:00:00',
@@ -32,7 +31,6 @@ class ReservasiSeeder extends Seeder
             ],
             [   //Menunggu Pembayaran
                 'user_id' => '2',
-                'bayar_id' => NULL,
                 'no_hp' => '22222',
                 'tanggal' => Carbon::now()->addDays(5)->format('Y-m-d'),
                 'jam_awal' => '11:00:00',
@@ -46,7 +44,6 @@ class ReservasiSeeder extends Seeder
             ],
             [   //Proses Acc Admin
                 'user_id' => '2',
-                'bayar_id' => '2',
                 'no_hp' => '33333',
                 'tanggal' => Carbon::now()->addDays(7)->format('Y-m-d'),
                 'jam_awal' => '13:00:00',
@@ -60,7 +57,6 @@ class ReservasiSeeder extends Seeder
             ],
             [   //Berhasil
                 'user_id' => '2',
-                'bayar_id' => '1',
                 'no_hp' => '44444',
                 'tanggal' => Carbon::now()->addDays(13)->format('Y-m-d'),
                 'jam_awal' => '15:00:00',
@@ -74,7 +70,6 @@ class ReservasiSeeder extends Seeder
             ],
             [   //Ditolak
                 'user_id' => '2',
-                'bayar_id' => NULL,
                 'no_hp' => '55555',
                 'tanggal' => Carbon::now()->addDays(15)->format('Y-m-d'),
                 'jam_awal' => '09:00:00',

@@ -32,7 +32,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6 mb-4">
                                     <label for="no_hp">No HP / WA</label>
-                                    <input type="text" name="no_hp" class="form-control" required>
+                                    <input type="text" name="no_hp" id="no_hp" class="form-control" required>
                                 </div>
                                 <div class="form-group col-md-6 mb-4">
                                     <label for="tanggal">Tanggal</label>
@@ -110,6 +110,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr@4.6.13/dist/l10n/id.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js" integrity="sha512-jTgBq4+dMYh73dquskmUFEgMY5mptcbqSw2rmhOZZSJjZbD2wMt0H5nhqWtleVkyBEjmzid5nyERPSNBafG4GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script>
         $(document).ready(function(){
             // Time Picker Jam Awal / Mulai
@@ -160,6 +162,14 @@
                 document.getElementById('harga').value = harga;
             });
 
+            // Masking nomor telepon
+            $('#no_hp').inputmask({
+                mask: "9999  9999  99[9999]", //Hanya bisa diisi 10-13 Digit
+                removeMaskOnSubmit: true,
+                placeholder: ' ',
+                showMaskOnHover: false,
+                showMaskOnFocus: false,
+            });
         });
     </script>
 @stop

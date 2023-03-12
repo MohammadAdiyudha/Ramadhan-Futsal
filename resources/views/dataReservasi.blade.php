@@ -238,13 +238,13 @@
                     },
                     { className: "align-middle", "targets": [ 0,1,2,3,4,5,6 ] }, //Vertical Alignment
                     { className: "text-center", "targets": [ 0,1,5,6 ] }, //Horizontal Alignment
-                    { "width": "5%", "targets": 5 },
-                    { "width": "5%", "targets": 1 },
+                    { "width": "5%", "targets": [0,1,5,6] },
+                    { "width": "10em", "targets": [2,3] },
                 ],
                 order: [[2, 'asc']], // Order dari Tanggal
                 language: { // Ubah bahasa tabel ke indonesia
                     url: 'https://cdn.datatables.net/plug-ins/1.13.1/i18n/id.json'
-                }
+                },
 
             });
 

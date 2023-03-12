@@ -17,7 +17,7 @@
     </blockquote>
     <div class="container">
         <div class="row justify">
-            <div class="col-md-8">
+            <div class="col">
 
                 @if (session('status'))
                     <h6 class="alert alert-success">{{ session('status') }}</h6>
@@ -27,16 +27,25 @@
                     <div class="card-body">
                         <form action="{{ url('buat-reservasi') }}" method="POST">
                             @csrf
-                            {{-- Buat cek id aktif bisa atau tidak --}}
+                            {{-- DEBUG - Buat cek id aktif bisa atau tidak --}}
                             {{-- <p>{{Auth::user()->id}}</p> --}}
-                            <div class="form-group row mb-4">
-                                <label for="" class="col-sm-2 col-form-label">No HP / WA</label>
-                                <input type="text" name="no_hp" class="form-control col-sm-10" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-6 mb-4">
+                                    <label for="no_hp">No HP / WA</label>
+                                    <input type="text" name="no_hp" class="form-control" required>
+                                </div>
+                                <div class="form-group col-md-6 mb-4">
+                                    <label for="tanggal">Tanggal</label>
+                                    <div class="input-group">
+                                        <input type="text" name="tanggal" id="tanggal" class="form-control" placeholder="Klik disini..." required>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text"><i class="fa-regular fa-calendar-days"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group row mb-4">
-                                <label for="" class="col-sm-2 col-form-label">Tanggal</label>
-                                <input type="date" name="tanggal" class="form-control col-sm-10" required>
-                            </div>
+
+
                             <div class="form-row">
                                 <div class="form-group col-md-6 mb-4">
                                     <label for="">Jam Mulai</label>
@@ -55,7 +64,6 @@
                                             <div class="input-group-text"><i class="fa-regular fa-clock"></i></div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="form-row">
@@ -79,7 +87,6 @@
                                 </div>
                             </div>
                             <div class="form-group mb-4">
-                                <button type="button" id="hitung" class="btn btn-success px-3">Hitung Harga</button>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
 
@@ -94,14 +101,18 @@
 
 @section('css')
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @stop
 
 @section('js')
     <script> console.log('Hi!'); </script>
     <script src="https://kit.fontawesome.com/f68e3b150b.js" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr@4.6.13/dist/l10n/id.js"></script>
     <script>
         $(document).ready(function(){
+            // Time Picker Jam Awal / Mulai
             $('input.timepickerMulai').timepicker({
                 timeFormat: 'HH:mm:ss',
                 interval: 60,
@@ -119,6 +130,7 @@
                 $('input.timepickerAkhir').timepicker('setTime', newMinAkhir);
             });
 
+            // Time Picker Jam Akhir / Selesai
             $('input.timepickerAkhir').timepicker({
                 timeFormat: 'HH:mm:ss',
                 interval: 60,
@@ -128,20 +140,26 @@
                 dropdown: true,
                 scrollbar: true
             });
+
+            // Date Picker
+            flatpickr("#tanggal", {
+                enableTime: false,
+                minDate: "today",
+                "locale": "id",
+            });
+
+            // Auto Hitung Durasi dan Bayar
+            $('input.timepickerAkhir').timepicker('option','change', function(time){
+                var valueAwal = document.getElementById("jam_awal").value;
+                var valueAkhir = document.getElementById("jam_akhir").value;
+                var splitAwal = valueAwal.split(":");
+                var splitAkhir = valueAkhir.split(":");
+                var durasi = parseInt(splitAkhir[0]) - parseInt(splitAwal[0]) ;
+                var harga = durasi*50000;
+                document.getElementById('durasi').value = durasi;
+                document.getElementById('harga').value = harga;
+            });
+
         });
-    </script>
-    {{-- Script Menghitung Lama / Durasi --}}
-    <script>
-        document.getElementById("hitung").onclick = function() {hitung()};
-        function hitung() {
-            var valueAwal = document.getElementById("jam_awal").value;
-            var valueAkhir = document.getElementById("jam_akhir").value;
-            var splitAwal = valueAwal.split(":");
-            var splitAkhir = valueAkhir.split(":");
-            var durasi = parseInt(splitAkhir[0]) - parseInt(splitAwal[0]) ;
-            var harga = durasi*50000;
-            document.getElementById('durasi').value = durasi;
-            document.getElementById('harga').value = harga;
-        }
     </script>
 @stop

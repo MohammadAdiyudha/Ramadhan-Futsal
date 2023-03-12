@@ -30,10 +30,16 @@
                             {{-- DEBUG - Buat cek id aktif bisa atau tidak --}}
                             {{-- <p>{{Auth::user()->id}}</p> --}}
                             <div class="form-row">
+                                {{-- Kolom No HP / WA --}}
                                 <div class="form-group col-md-6 mb-4">
                                     <label for="no_hp">No HP / WA</label>
                                     <input type="text" name="no_hp" id="no_hp" class="form-control" required>
+                                    @error('no_hp')
+                                        <div class="error text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
+
+                                {{-- Kolom Tanggal --}}
                                 <div class="form-group col-md-6 mb-4">
                                     <label for="tanggal">Tanggal</label>
                                     <div class="input-group">
@@ -42,11 +48,15 @@
                                             <div class="input-group-text"><i class="fa-regular fa-calendar-days"></i></div>
                                         </div>
                                     </div>
+                                    @error('tanggal')
+                                        <div class="error text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
 
                             <div class="form-row">
+                                {{-- Kolom Jam Mulai --}}
                                 <div class="form-group col-md-6 mb-4">
                                     <label for="">Jam Mulai</label>
                                     <div class="input-group">
@@ -55,7 +65,12 @@
                                             <div class="input-group-text"><i class="fa-regular fa-clock"></i></div>
                                         </div>
                                     </div>
+                                    @error('jam_awal')
+                                        <div class="error text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
+
+                                {{-- Kolom Jam Selesai --}}
                                 <div class="form-group col-md-6 mb-4">
                                     <label for="">Jam Selesai</label>
                                     <div class="input-group">
@@ -64,9 +79,13 @@
                                             <div class="input-group-text"><i class="fa-regular fa-clock"></i></div>
                                         </div>
                                     </div>
+                                    @error('jam_akhir')
+                                        <div class="error text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-row">
+                                {{-- Kolom Durasi --}}
                                 <div class="form-group col-md-6 mb-4">
                                     <label for="">Durasi</label>
                                     <div class="input-group">
@@ -76,6 +95,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                {{-- Kolom Harga --}}
                                 <div class="form-group col-md-6 mb-4">
                                     <label for="">Harga</label>
                                     <div class="input-group">
@@ -86,6 +107,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            {{-- Button Submit --}}
                             <div class="form-group mb-4">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>

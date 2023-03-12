@@ -7,6 +7,8 @@ use Auth;
 use App\Models\Reservasi;
 use App\Models\Pembayaran;
 use DB;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 
 class ReservasiController extends Controller
 {
@@ -46,6 +48,17 @@ class ReservasiController extends Controller
         $user = Auth::user();
 
         try {
+            $validator = Validator::make($request->all(), [
+                'no_hp'  => 'required|min:10',
+                'tanggal'  => 'required',
+                'jam_awal'  => 'required',
+                'jam_akhir'  => 'required',
+            ]);
+
+            // Jika Validator gagal
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator);
+            };
             $reservasi->user_id = $user->id;
             $reservasi->no_hp = $request->input('no_hp');
             $reservasi->tanggal = $request->input('tanggal');
@@ -85,7 +98,17 @@ class ReservasiController extends Controller
     {
 
         $reservasi = Reservasi::find($id);
+        $validator = Validator::make($request->all(), [
+            'no_hp'  => 'required|min:10',
+            'tanggal'  => 'required',
+            'jam_awal'  => 'required',
+            'jam_akhir'  => 'required',
+        ]);
 
+        // Jika Validator gagal
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        };
         $reservasi->no_hp = $request->input('no_hp');
         $reservasi->tanggal = $request->input('tanggal');
         $reservasi->jam_awal = $request->input('jam_awal');

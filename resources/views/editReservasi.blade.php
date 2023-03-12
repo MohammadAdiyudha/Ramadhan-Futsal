@@ -113,10 +113,14 @@
                 dropdown: true,
                 scrollbar: true
             });
-        });
-    </script>
-    <script>
-        $(document).ready(function(){
+
+            // Fungsi untuk min time set time Jam Akhir lebih dari Jam Awal
+            $('input.timepickerMulai').timepicker('option','change', function(time){
+                var newMinAkhir = new Date(time.getTime() + (1 * 60 * 60 * 1000));
+                $('input.timepickerAkhir').timepicker('option', 'minTime', newMinAkhir);
+                $('input.timepickerAkhir').timepicker('setTime', newMinAkhir);
+            });
+
             $('input.timepickerAkhir').timepicker({
                 timeFormat: 'HH:mm:ss',
                 interval: 60,

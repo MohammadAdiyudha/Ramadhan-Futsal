@@ -48,4 +48,13 @@ class PembayaranController extends Controller
         }
 
     }
+
+    public function lihatBayar($id)
+    {
+        $pembayaran   = DB::table('pembayarans')
+                        ->where('reservasi_id','=',$id)
+                        ->first();
+        return view('lihatBayar')->with('pembayaran', $pembayaran);
+
+    }
 }

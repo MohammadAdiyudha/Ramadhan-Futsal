@@ -128,14 +128,4 @@ class ReservasiController extends Controller
 
         return redirect("data-reservasi")->with('success','Ubah data berhasil');
     }
-
-
-    public function lihatBayar($id)
-    {
-        $pembayaran   = DB::table('pembayarans')
-                        ->where('reservasi_id','=',$id)
-                        ->first();
-        return view('lihatBayar')->with('pembayaran', $pembayaran);
-
-    }
 }

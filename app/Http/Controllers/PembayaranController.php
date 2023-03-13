@@ -54,7 +54,18 @@ class PembayaranController extends Controller
         $pembayaran   = DB::table('pembayarans')
                         ->where('reservasi_id','=',$id)
                         ->first();
-        return view('lihatBayar')->with('pembayaran', $pembayaran);
+        $sudahBayar = DB::table('pembayarans')
+                ->where('reservasi_id','=',$id)
+                ->exists();
+        // Cek sudah bayar apa belum
+        if($sudahBayar) {
+            // Jika sudah bayar
+            return view('lihatBayar')->with('pembayaran', $pembayaran);
+        } else {
+            // Jika belum bayar
+            return back()->with('error','Reservasi ini belum dibayar');
+
+        }
 
     }
 }

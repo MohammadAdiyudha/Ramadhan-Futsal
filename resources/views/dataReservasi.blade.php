@@ -91,8 +91,8 @@
                                                 or $reservasi->status == 'Berhasil')
                                                     btn-success"
                                                 @else
-                                                    btn-secondary" disabled
-                                        @endif>
+                                                    btn-secondary disabled" aria-disabled="true"
+                                                @endif>
                                             <i class="fa-solid fa-money-bill-transfer"></i>
                                          </a>
 

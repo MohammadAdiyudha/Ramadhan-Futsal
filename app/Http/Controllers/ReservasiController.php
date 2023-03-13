@@ -90,7 +90,15 @@ class ReservasiController extends Controller
         $reservasi   = DB::table('reservasis')
                         ->where('reservasi_id','=',$id)
                         ->first();
-        return view('editReservasi')->with('reservasi', $reservasi);
+        // Cek owner
+        if($reservasi->user_id != auth()->id()) {
+            // Jika mencoba akses data user lain
+            return back()->with('error','Hayooo ngapain?');
+        } else {
+            // Jika berhasil
+            return view('editReservasi')->with('reservasi', $reservasi);
+        }
+
 
     }
 

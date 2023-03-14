@@ -31,6 +31,8 @@
                             <th class="text-center">No HP</th>
                             <th class="text-center">Reservasi ID</th>
                             <th class="text-center">Aksi</th>
+                            {{-- DEBUG RELATIONSHIP --}}
+                            {{-- <th class="text-center">Atas Nama</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -152,6 +154,8 @@
                                     @endif
                                 </div>
                             </td>
+                            {{-- DEBUG Reltionshiip --}}
+                            {{-- <td class="">{{ @$reservasi->pembayaran->atas_nama }}</td> --}}
                         </tr>
                         @endforeach
                     </tbody>

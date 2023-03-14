@@ -30,12 +30,15 @@
                             <th class="text-center">Harga</th>
                             <th class="text-center">No HP</th>
                             <th class="text-center">Reservasi ID</th>
+                            @if (Auth::user()->is_admin == 1)
+                                <th class="text-center">Nama Pemesan</th>
+                            @endif
                             <th class="text-center">Aksi</th>
                             {{-- DEBUG RELATIONSHIP --}}
                             {{-- Reservasi - Pembayaran --}}
                             {{-- <th class="text-center">Atas Nama</th> --}}
 
-                            {{-- Reservasu - User  --}}
+                            {{-- Reservasi - User  --}}
                             {{-- <th class="text-center">Nama Pemesan</th> --}}
                         </tr>
                     </thead>
@@ -83,6 +86,10 @@
                             <td class="">{{ $reservasi->no_hp }}</td>
                             {{-- Kolom - Reservasi ID --}}
                             <td class="">{{ $reservasi->reservasi_id }}</td>
+                            {{-- Kolom - Nama Pemesan (KHUSUS ADMIN) --}}
+                            @if (Auth::user()->is_admin == 1)
+                                <td class="">{{ @$reservasi->user->name }}</td>
+                            @endif
                             {{-- Kolom - Aksi --}}
                             {{-- Disabled sesuai status --}}
                             <td>
@@ -246,11 +253,11 @@
                     {
                         searchable: false,
                         orderable: false,
-                        targets: [0,6], //No dan Aksi tidak bisa disorting dan search
+                        targets: [0,6,7], //No dan Aksi tidak bisa disorting dan search
                     },
-                    { className: "align-middle", "targets": [ 0,1,2,3,4,5,6 ] }, //Vertical Alignment
-                    { className: "text-center", "targets": [ 0,1,5,6 ] }, //Horizontal Alignment
-                    { "width": "5%", "targets": [0,1,5,6] },
+                    { className: "align-middle", "targets": [ 0,1,2,3,4,5,6,7 ] }, //Vertical Alignment
+                    { className: "text-center", "targets": [ 0,1,5,6,7 ] }, //Horizontal Alignment
+                    { "width": "5%", "targets": [0,1,5,6,7] },
                     { "width": "10em", "targets": [2,3] },
                 ],
                 order: [[2, 'asc']], // Order dari Tanggal

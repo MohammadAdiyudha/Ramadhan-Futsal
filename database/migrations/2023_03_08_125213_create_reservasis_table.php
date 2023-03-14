@@ -15,7 +15,7 @@ class CreateReservasisTable extends Migration
     {
         Schema::create('reservasis', function (Blueprint $table) {
             $table->id('reservasi_id');
-            $table->bigInteger('user_id');
+            $table->foreignId('user_id');
             $table->string('no_hp');
             $table->date('tanggal');
             $table->time('jam_awal');
@@ -24,6 +24,8 @@ class CreateReservasisTable extends Migration
             $table->biginteger('harga');
             $table->string('status');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

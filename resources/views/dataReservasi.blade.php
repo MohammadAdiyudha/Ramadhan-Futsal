@@ -30,9 +30,7 @@
                             <th class="text-center">Harga</th>
                             <th class="text-center">No HP</th>
                             <th class="text-center">Reservasi ID</th>
-                            @if (Auth::user()->is_admin == 1)
-                                <th class="text-center">Nama Pemesan</th>
-                            @endif
+                            <th class="text-center">Nama Pemesan</th>
                             <th class="text-center">Aksi</th>
                             {{-- DEBUG RELATIONSHIP --}}
                             {{-- Reservasi - Pembayaran --}}
@@ -86,10 +84,8 @@
                             <td class="">{{ $reservasi->no_hp }}</td>
                             {{-- Kolom - Reservasi ID --}}
                             <td class="">{{ $reservasi->reservasi_id }}</td>
-                            {{-- Kolom - Nama Pemesan (KHUSUS ADMIN) --}}
-                            @if (Auth::user()->is_admin == 1)
-                                <td class="">{{ @$reservasi->user->name }}</td>
-                            @endif
+                            {{-- Kolom - Nama Pemesan --}}
+                            <td class="">{{ @$reservasi->user->name }}</td>
                             {{-- Kolom - Aksi --}}
                             {{-- Disabled sesuai status --}}
                             <td>

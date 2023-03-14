@@ -22,11 +22,9 @@ class ReservasiController extends Controller
     public function indexUser() {
         $user_table = Auth::user();
         $user_getID = $user_table->id;
-        $reservasi = DB::table('reservasis')
-                        ->select('*')
-                        ->where('user_id','=',$user_getID)
-                        ->get();
-                        return view('dataReservasi',['reservasis'=>$reservasi]);
+        $reservasi = Reservasi::where('user_id','=',$user_getID)
+                    ->get();
+        return view('dataReservasi',['reservasis'=>$reservasi]);
 
         // DEBUG RELATIONSHIP 1-on-1 RESERVASI - PEMBAYARAN
         // $bayar = Reservasi::find(3)->pembayaran->atas_nama;
@@ -36,9 +34,7 @@ class ReservasiController extends Controller
 
      // Tampil Reservasi Sisi ADMIN
     public function indexAdmin() {
-        $reservasi = DB::table('reservasis')
-                        ->select('*')
-                        ->get();
+        $reservasi = Reservasi::all();
         return view('dataReservasi',['reservasis'=>$reservasi]);
      }
 

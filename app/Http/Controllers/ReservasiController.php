@@ -27,6 +27,11 @@ class ReservasiController extends Controller
                         ->where('user_id','=',$user_getID)
                         ->get();
                         return view('dataReservasi',['reservasis'=>$reservasi]);
+
+        // DEBUG RELATIONSHIP 1-on-1 RESERVASI - PEMBAYARAN
+        // $bayar = Reservasi::find(3)->pembayaran->atas_nama;
+        // $reservasi = Pembayaran::find(3)->reservasi->tanggal;
+        // dd($bayar,$reservasi);
      }
 
      // Tampil Reservasi Sisi ADMIN

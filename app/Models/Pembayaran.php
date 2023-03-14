@@ -26,6 +26,6 @@ class Pembayaran extends Authenticatable implements MustVerifyEmail
     protected $primaryKey = 'bayar_id';
     public function reservasi()
     {
-    	return $this->belongsTo('App\Models\\Reservasi');
+    	return $this->belongsTo(Reservasi::class,'reservasi_id');
     }
 }

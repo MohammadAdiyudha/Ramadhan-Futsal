@@ -17,12 +17,12 @@ class JadwalController extends Controller
     {
         $events = [];
 
-        $reservasis = Reservasi::where('status','Berhasil')
+        $reservasis = Reservasi::whereNotIn('status',['Pending','Menunggu Pembayaran','Ditolak'])
                                 ->get();
 
         foreach ($reservasis as $reservasi) {
             $events[] = [
-                'title' => 'Booked',
+                'title' => $reservasi->status,
                 'start' => $reservasi->tanggal . " $reservasi->jam_awal",
                 'end' => $reservasi->tanggal . " $reservasi->jam_akhir",
             ];

@@ -12,7 +12,6 @@
             <div id='calendar'></div>
         </div>
     </div>
-
 @stop
 
 @section('css')
@@ -32,6 +31,7 @@
             initialView: 'timeGridWeek',
             slotMinTime: '09:00:00',
             slotMaxTime: '21:00:00',
+            height: 'auto',
             firstDay: 1,
             allDaySlot: false,
             slotLabelFormat: {
@@ -60,6 +60,12 @@
             eventTimeFormat:{
                 hour: '2-digit',
                 minute: '2-digit',
+            },
+
+            views: {
+                dayGridMonth: {
+                    dayHeaderFormat: {weekday: 'long'},
+                }
             },
 
 

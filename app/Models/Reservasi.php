@@ -32,4 +32,9 @@ class Reservasi extends Authenticatable implements MustVerifyEmail
     {
     	return $this->hasOne(Pembayaran::class,'reservasi_id');
     }
+
+    public function user()
+    {
+    	return $this->belongsTo(User::class,'user_id');
+    }
 }

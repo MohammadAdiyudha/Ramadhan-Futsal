@@ -71,18 +71,18 @@
 
             eventDidMount: function(info) {
                 // Warna Event tergantung Title
-                if(info.event.title=='Proses Acc Admin') {
+                if(info.event.extendedProps.description=='Proses Acc Admin') {
                     info.el.style.backgroundColor = '#0d6efd';
                     info.el.style.color = 'white';
                     info.el.style.eventColor = 'white';
-                } else if (info.event.title=='Berhasil') {
+                } else if (info.event.extendedProps.description=='Berhasil') {
                     info.el.style.backgroundColor = '#198754';
                     info.el.style.color = 'white';
                 }
 
                 // Tooltip Bootstrap (Bukan Fullcalendar)
                 $(info.el).tooltip({
-                    title: 'Status Pesanan : ' + info.event.title,
+                    title: 'Status Pesanan : ' + info.event.extendedProps.description,
                     placement: "top",
                     trigger: "hover",
                     container: "body"

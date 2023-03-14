@@ -22,9 +22,10 @@ class JadwalController extends Controller
 
         foreach ($reservasis as $reservasi) {
             $events[] = [
-                'title' => $reservasi->status,
+                'title' => $reservasi->user->name,
                 'start' => $reservasi->tanggal . " $reservasi->jam_awal",
                 'end' => $reservasi->tanggal . " $reservasi->jam_akhir",
+                'description' => $reservasi->status,
             ];
         }
 

@@ -55,6 +55,9 @@ Route::group(['middleware' => 'is_admin'], function () {
 
     // Tampilan data Reservasi - User
     Route::get('admin/data-reservasi', [ReservasiController::class, 'indexAdmin']);
+
+     // Set Status
+     Route::post('admin/set-status', [ReservasiController::class, 'setStatus']);
 });
 
 // Menu Buat Reservasi

@@ -111,6 +111,7 @@
 
                     { className: "align-middle", "targets": [ 0,1,2,3,4,5,6 ] }, //Vertical Alignment
                     { className: "text-center", "targets": [ 0,3,4,5,6 ] }, //Horizontal Alignment
+                    { "width": "5%", "targets": [0,3,,4,5,6] },
                 ],
                 order: [[1, 'asc']], // Order dari Nama
                 language: { // Ubah bahasa tabel ke indonesia

@@ -129,4 +129,13 @@ class ReservasiController extends Controller
 
         return redirect("data-reservasi")->with('success','Ubah data berhasil');
     }
+
+    public function setStatus(Request $request)
+    {
+        $reservasi = Reservasi::find($request->input('stReservasiID'));
+        $reservasi->status = $request->input('setStatus');
+        $reservasi->update();
+
+        return redirect("admin/data-reservasi")->with('success','Ubah status berhasil');
+    }
 }

@@ -31,14 +31,18 @@ Auth::routes();
 //verifikasi email user
 Auth::routes(['verify' => true]);
 
+// Tampil Dashboard Menu User
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 // Menu Jadwal
 Route::get('/jadwal', \App\Http\Controllers\JadwalController::class)->name('jadwal');
 
-// Route Admin Home & Cek Admin atau bukan
+// Route Khusus Admin
 Route::group(['middleware' => 'is_admin'], function () {
+    // Dashboard Admin
     Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home');
 
+    // Dashboard Admin
     Route::get('admin', function () {
         return redirect()->route('admin.home');
     });
@@ -53,7 +57,7 @@ Route::group(['middleware' => 'is_admin'], function () {
     // Menghapus Data User
     Route::delete('admin/hapus-user/{id}',  [App\Http\Controllers\UsersController::class, 'hapus'])->name('user.delete');
 
-    // Tampilan data Reservasi - User
+    // Tampilan data Reservasi
     Route::get('admin/data-reservasi', [ReservasiController::class, 'indexAdmin']);
 
      // Set Status

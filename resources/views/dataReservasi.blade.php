@@ -8,14 +8,41 @@
 
 @section('content')
     <blockquote class="quote-olive">
-        <h5 class="text-olive">Tips!</h5>
-        <p>
-            <i class="fa-solid fa-cart-shopping"></i> <b>Bayar</b> untuk mengisi bukti transfer
-            <br>
-            <i class="fa-solid fa-pen-to-square fa-fw"></i> <b>Edit</b> untuk mengubah data
-            <br>
-            <i class="fa-solid fa-trash fa-fw"></i> <b>Hapus</b> untuk menghapus data reservasi tersebut
-        </p>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <h5 class="text-olive">Tips! Kegunaan Tombol Aksi</h5>
+                    <p class="text-justify">
+                        {{-- TIPS ADMIN --}}
+                        @if (Auth::user()->is_admin == 1)
+                            <button class="btn btn-success btn-sm mr-1"><i class="fa-solid fa-money-bill-transfer"></i></button>
+                             untuk melihat bukti transfer
+                            <br>
+                            <button class="btn btn-warning btn-sm mr-1"><i class="fa-solid fa-pen-to-square fa-fw"></i></button>
+                             untuk mengubah status reservasi
+
+                        {{-- TIPS USER --}}
+                        @else
+                            <button class="btn btn-success btn-sm mr-1"><i class="fa-solid fa-money-bill-transfer"></i></button>
+                             untuk mengisi bukti transfer
+                            <br>
+                            <button class="btn btn-warning btn-sm mr-1"><i class="fa-solid fa-pen-to-square fa-fw"></i></button>
+                             untuk mengubah detail reservasi
+                        @endif
+
+                        {{-- TIPS KEDUANYA --}}
+                            <br>
+                            <button class="btn btn-danger btn-sm mr-1 mb-2"><i class="fa-solid fa-trash fa-fw"></i></button>
+                             untuk menghapus data reservasi
+                    </p>
+                </div>
+                <div class="col-sm">
+                    <h5 class="text-olive">Penjelasan Status</h5>
+                    <p>Tekan setiap status untuk menampilkan penjelasan setiap status.</p>
+                </div>
+            </div>
+        </div>
+
     </blockquote>
 
     <div class="card">
@@ -50,27 +77,32 @@
                                 {{-- Switch untuk membedakan warna text sesuai status --}}
                                 @switch($reservasi->status)
                                     @case('Pending')
-                                        <div class="badge badge-secondary text-wrap" style="width: 5rem;">
+                                        <div class="badge badge-secondary text-wrap" style="width: 5rem;"
+                                        data-toggle="tooltip" data-placement="top" title="Admin Sedang Memastikan Jadwal Tersedia">
                                             Pending
                                         </div>
                                         @break
                                     @case('Menunggu Pembayaran')
-                                        <div class="badge badge-warning text-wrap" style="width: 5rem;">
+                                        <div class="badge badge-warning text-wrap" style="width: 5rem;"
+                                        data-toggle="tooltip" data-placement="top" title="Jadwal Tersedia, Silahkan Membayar Untuk Melanjutkan">
                                             Menunggu Pembayaran
                                         </div>
                                         @break
                                     @case('Proses Acc Admin')
-                                        <div class="badge badge-primary text-wrap" style="width: 5rem;">
+                                        <div class="badge badge-primary text-wrap" style="width: 5rem;"
+                                        data-toggle="tooltip" data-placement="top" title="Pembayaran Masuk, Admin Sedang Konfirmasi Pembayaran">
                                             Proses Acc Admin
                                         </div>
                                         @break
                                     @case('Berhasil')
-                                        <div class="badge badge-success text-wrap" style="width: 5rem;">
+                                        <div class="badge badge-success text-wrap" style="width: 5rem;"
+                                        data-toggle="tooltip" data-placement="top" title="Pembayaran Valid, Silahkan Datang Sesuai Jadwal">
                                             Berhasil
                                         </div>
                                         @break
                                     @case('Ditolak')
-                                        <div class="badge badge-danger text-wrap" style="width: 5rem;">
+                                        <div class="badge badge-danger text-wrap" style="width: 5rem;"
+                                        data-toggle="tooltip" data-placement="top" title="Jadwal Tersebut Penuh / Pembayaran Tidak Valid">
                                             Ditolak
                                         </div>
                                         @break
@@ -367,5 +399,12 @@
                 //replace the "Choose a file" label
                 $(this).next('.custom-file-label').html(cleanFileName);
             })
+    </script>
+
+    {{-- Memanggil Tooltip Keterangan Setiap Status --}}
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     </script>
 @stop

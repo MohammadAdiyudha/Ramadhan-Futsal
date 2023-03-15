@@ -9,11 +9,7 @@
 @section('content')
     <blockquote class="quote-olivia">
         <h5 class="text-olivia">Tips!</h5>
-        <p>Pastikan jadwal tidak bentrok dengan jadwal lain.</p>
-        <p>
-            Tekan tombol <strong>Hitung Harga</strong> sebelum menekan tombol <strong>Submit</strong>
-            untuk melihat total yang perlu dibayar.
-        </p>
+        <p>Pastikan jadwal tidak bentrok dengan jadwal lain. <br> Durasi dan Harga akan otomatis terhitung</p>
     </blockquote>
     <div class="container">
         <div class="row justify">

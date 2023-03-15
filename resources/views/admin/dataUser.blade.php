@@ -9,10 +9,12 @@
 @section('content')
     <blockquote class="quote-olive">
         <h5 class="text-olive">Tips!</h5>
-        <p>
-            <i class="fa-solid fa-pen-to-square fa-fw"></i> <b>Edit</b> untuk mengubah data dan verifikasi manual
+        <p class="text-justify">
+            <button class="btn btn-warning btn-sm mb-2"><i class="fa-solid fa-pen-to-square fa-fw"></i></button>
+            untuk mengubah data dan verifikasi akun manual (Tanpa lewat email)
             <br>
-            <i class="fa-solid fa-trash fa-fw"></i> <b>Hapus</b> untuk menghapus data user tersebut
+            <button class="btn btn-danger btn-sm mb-2"><i class="fa-solid fa-trash fa-fw"></i></button>
+            untuk menghapus data user tersebut
         </p>
     </blockquote>
 

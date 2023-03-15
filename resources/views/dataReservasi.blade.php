@@ -326,7 +326,7 @@
                     {
                         searchable: false,
                         orderable: false,
-                        targets: [0,6,7], //No dan Aksi tidak bisa disorting dan search
+                        targets: [0,7], //No dan Aksi tidak bisa disorting dan search
                     },
                     { className: "align-middle", "targets": [ 0,1,2,3,4,5,6,7 ] }, //Vertical Alignment
                     { className: "text-center", "targets": [ 0,1,5,6,7 ] }, //Horizontal Alignment

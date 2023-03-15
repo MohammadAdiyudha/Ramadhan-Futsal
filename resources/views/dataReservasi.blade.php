@@ -106,7 +106,7 @@
                                          </a>
 
                                         {{-- Button Edit untuk mengubah status --}}
-                                        <button type="button" class="btn btn-warning">
+                                        <button type="button" class="btn btn-warning openModalSetStatus" data-toggle="modal" data-target="#modalSetStatus" data-id='{{ $reservasi->reservasi_id }}' data-status='{{ $reservasi->status }}'>
                                             <i class="fa-solid fa-pen-to-square fa-fw"></i>
                                         </button>
 
@@ -230,6 +230,51 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Modal - Set Status -->
+    <div class="modal fade" id="modalSetStatus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Set Status Reservasi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <form action="{{url('admin/set-status')}}" method="POST">
+                        @csrf
+                        <div class="row justify">
+                            <div class="col">
+                                {{-- Reservasi ID (KHUSUS BAYAR) --}}
+                                <div class="form-group row mb-2">
+                                    <label for="stReservasiID" class="col-form-label">Reservasi ID</label>
+                                    <input type="number" id="stReservasiID" name="stReservasiID" class="form-control" readonly required>
+                                </div>
+                                {{-- Atas Nama Rekening --}}
+                                <div class="form-group row mb-2">
+                                    <label for="setStatus" class="col-form-label">Status Reservasi</label>
+                                    <select class="custom-select" id="setStatus" name="setStatus"">
+                                        <option value="Pending">Pending</option>
+                                        <option value="Menunggu Pembayaran">Menunggu Pembayaran</option>
+                                        <option value="Proses Acc Admin">Proses Acc Admin</option>
+                                        <option value="Berhasil">Berhasil</option>
+                                        <option value="Ditolak">Ditolak</option>
+                                      </select>
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                    </form>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('css')
@@ -303,6 +348,13 @@
          $('.modalBayar').click(function(event) {
             var myReservasiID = $(this).attr('data-id');
             $(".modal-body #reservasiID_bayar").val( myReservasiID );
+        });
+
+        $('.openModalSetStatus').click(function(event) {
+            var sttReservasiID = $(this).attr('data-id');
+            var sttStatus      = $(this).attr('data-status');
+            $(".modal-body #stReservasiID").val( sttReservasiID );
+            $(".modal-body #setStatus").val( sttStatus );
         });
     </script>
 

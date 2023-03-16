@@ -57,8 +57,11 @@ Route::group(['middleware' => 'is_admin'], function () {
     // Tampilan data Reservasi
     Route::get('admin/data-reservasi', [ReservasiController::class, 'indexAdmin']);
 
-     // Set Status
-     Route::post('admin/set-status', [ReservasiController::class, 'setStatus']);
+    // Set Status
+    Route::post('admin/set-status', [ReservasiController::class, 'setStatus']);
+
+    // Konfirmasi Pembayaran
+    Route::post('admin/konfirmasi-bayar/{id}', [PembayaranController::class, 'konfirmasiBayar'])->name('konfirmasiBayar');
 });
 
 // Menu Buat Reservasi

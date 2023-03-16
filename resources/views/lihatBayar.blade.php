@@ -45,6 +45,13 @@
                                         <label for="" class="col-form-label">Jenis Bayar</label>
                                         <input type="text" name="jenis_bayar" class="form-control" value="{{$pembayaran->jenis_bayar}}" readonly>
                                     </div>
+                                    <form action="{{ route('konfirmasiBayar', $pembayaran->reservasi_id) }}" method="post">
+                                        @csrf
+                                        <div class="btn-group">
+                                            <button type="submit" name="btnaction" value="tidak valid" class="btn btn-danger">Tidak Valid</button>
+                                            <button type="submit" name="btnaction" value="valid" class="btn btn-success">Valid</button>
+                                        </div>
+                                    </form>
                             </div>
                         </div>
                     </div>

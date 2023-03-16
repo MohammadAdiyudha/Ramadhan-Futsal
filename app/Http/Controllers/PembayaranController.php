@@ -68,4 +68,21 @@ class PembayaranController extends Controller
         }
 
     }
+
+    public function konfirmasiBayar(Request $request, $id){
+        $reservasi = Reservasi::find($id);
+        switch ($request->input('btnaction')) {
+            case 'tidak valid':
+                $reservasi->status = 'Ditolak';
+                $reservasi->update();
+                return redirect('admin/data-reservasi')->with('success','Pembayaran Berhasil Dikonfirmasi Tidak Valid');
+                break;
+
+            case 'valid':
+                $reservasi->status = 'Berhasil';
+                $reservasi->update();
+                return redirect('admin/data-reservasi')->with('success','Pembayaran Berhasil Dikonfirmasi Valid');
+                break;
+        }
+    }
 }

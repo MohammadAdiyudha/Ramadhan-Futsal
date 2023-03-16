@@ -18,12 +18,12 @@ class ReservasiSeeder extends Seeder
             // USER ID 1 - Bukan Dummy
             [   //Pending
                 'user_id' => '2',
-                'no_hp' => '11111',
-                'tanggal' => Carbon::now()->addDays(3)->format('Y-m-d'),
-                'jam_awal' => '09:00:00',
-                'jam_akhir' => '10:00:00',
-                'durasi' => '1',
-                'harga' => '50000',
+                'no_hp' => '111111111111',
+                'tanggal' => Carbon::now()->format('Y-m-d'),
+                'jam_awal' => '11:00:00',
+                'jam_akhir' => '15:00:00',
+                'durasi' => '4',
+                'harga' => '200000',
                 'status' => 'Pending',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -31,7 +31,7 @@ class ReservasiSeeder extends Seeder
             ],
             [   //Menunggu Pembayaran
                 'user_id' => '2',
-                'no_hp' => '22222',
+                'no_hp' => '222222222222',
                 'tanggal' => Carbon::now()->addDays(5)->format('Y-m-d'),
                 'jam_awal' => '11:00:00',
                 'jam_akhir' => '12:00:00',
@@ -44,7 +44,7 @@ class ReservasiSeeder extends Seeder
             ],
             [   //Proses Acc Admin
                 'user_id' => '2',
-                'no_hp' => '33333',
+                'no_hp' => '333333333333',
                 'tanggal' => Carbon::now()->addDays(7)->format('Y-m-d'),
                 'jam_awal' => '13:00:00',
                 'jam_akhir' => '15:00:00',
@@ -57,7 +57,7 @@ class ReservasiSeeder extends Seeder
             ],
             [   //Berhasil
                 'user_id' => '2',
-                'no_hp' => '44444',
+                'no_hp' => '44444444444',
                 'tanggal' => Carbon::now()->addDays(13)->format('Y-m-d'),
                 'jam_awal' => '15:00:00',
                 'jam_akhir' => '18:00:00',
@@ -70,13 +70,27 @@ class ReservasiSeeder extends Seeder
             ],
             [   //Ditolak
                 'user_id' => '2',
-                'no_hp' => '55555',
+                'no_hp' => '55555555555',
                 'tanggal' => Carbon::now()->addDays(15)->format('Y-m-d'),
                 'jam_awal' => '09:00:00',
                 'jam_akhir' => '10:00:00',
                 'durasi' => '1',
                 'harga' => '50000',
                 'status' => 'Ditolak',
+                'created_at' => now(),
+                'updated_at' => now(),
+
+            ],
+
+            [   //Pending 2
+                'user_id' => '2',
+                'no_hp' => '121212121212',
+                'tanggal' => Carbon::now()->format('Y-m-d'),
+                'jam_awal' => '18:00:00',
+                'jam_akhir' => '20:00:00',
+                'durasi' => '2',
+                'harga' => '100000',
+                'status' => 'Pending',
                 'created_at' => now(),
                 'updated_at' => now(),
 

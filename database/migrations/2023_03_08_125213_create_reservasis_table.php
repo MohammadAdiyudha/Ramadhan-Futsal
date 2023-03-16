@@ -18,10 +18,10 @@ class CreateReservasisTable extends Migration
             $table->foreignId('user_id');
             $table->string('no_hp');
             $table->date('tanggal');
-            $table->time('jam_awal');
-            $table->time('jam_akhir');
-            $table->integer('durasi');
-            $table->biginteger('harga');
+            $table->time('jam_awal')->nullable();
+            $table->time('jam_akhir')->nullable();
+            $table->integer('durasi')->nullable();
+            $table->biginteger('harga')->nullable();
             $table->string('status');
             $table->timestamps();
 

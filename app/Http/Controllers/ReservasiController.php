@@ -99,7 +99,7 @@ class ReservasiController extends Controller
                 $reservasi->harga = $request->input('harga');
                 $reservasi->status = "Pending";
                 $reservasi->save();
-                return redirect()->back()->with('success','Reservasi Berhasil Dibuat');
+                return redirect("data-reservasi")->with('success','Reservasi Berhasil Dibuat');
             }
 
         } catch(\Illuminate\Database\QueryException $e){

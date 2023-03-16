@@ -32,15 +32,12 @@ Auth::routes();
 Auth::routes(['verify' => true]);
 
 // Tampil Dashboard Menu User
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// Menu Jadwal
-Route::get('/jadwal', \App\Http\Controllers\JadwalController::class)->name('jadwal');
+Route::get('/home', \App\Http\Controllers\HomeController::class)->name('home');
 
 // Route Khusus Admin
 Route::group(['middleware' => 'is_admin'], function () {
     // Dashboard Admin
-    Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home');
+    Route::get('admin/home', \App\Http\Controllers\HomeController::class)->name('admin.home');
 
     // Dashboard Admin
     Route::get('admin', function () {

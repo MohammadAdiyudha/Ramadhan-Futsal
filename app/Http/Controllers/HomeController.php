@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Reservasi;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -32,9 +34,30 @@ class HomeController extends Controller
      */
     public function adminHome()
     {
-        return view('admin/adminHome');
+        return view('admin.adminHome');
     }
 
+    public function __invoke()
+    {
+        $events = [];
 
+        $reservasis = Reservasi::whereNotIn('status',['Pending','Menunggu Pembayaran','Ditolak'])
+                                ->get();
+
+        foreach ($reservasis as $reservasi) {
+            $events[] = [
+                'title' => $reservasi->user->name,
+                'start' => $reservasi->tanggal . " $reservasi->jam_awal",
+                'end' => $reservasi->tanggal . " $reservasi->jam_akhir",
+                'description' => $reservasi->status,
+            ];
+        }
+
+        if(Auth::user()->is_admin==1) {
+            return view('admin.adminHome', compact('events'));
+        } else {
+            return view('home', compact('events'));
+        }
+    }
 
 }

@@ -322,12 +322,6 @@ return [
             'can'  => 'user_area',
             'icon' => 'fa-solid fa-house fa-fw',
         ],
-        [
-            'text' => 'Jadwal',
-            'url'  => '/jadwal',
-            'can'  => ['user_area','admin_area'],
-            'icon' => "fa-regular fa-calendar-days fa-fw",
-        ],
 
         // MENU User
         [

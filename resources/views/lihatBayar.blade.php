@@ -15,12 +15,12 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-sm">
                         <div class="text-center">
                             <img src="{{asset('assets/buktiBayar/'.$pembayaran->bukti_bayar)}}" alt="bukti bayar" class="img-fluid">
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-sm">
                         <div class="row justify">
                             <div class="col">
                                 @if (session('status'))

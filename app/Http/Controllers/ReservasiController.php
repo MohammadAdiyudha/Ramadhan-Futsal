@@ -10,6 +10,7 @@ use DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use File;
 
 
 class ReservasiController extends Controller
@@ -113,8 +114,17 @@ class ReservasiController extends Controller
     }
 
     public function hapus($reservasi_id){
-        DB::table('reservasis')->where('reservasi_id', $reservasi_id)->delete();
-        return redirect()->back()->with('success','Hapus data berhasil');
+        $reservasi = Reservasi::find($reservasi_id);
+        $cekBayarExist = Pembayaran::where('reservasi_id',$reservasi_id)->exists();
+        if ($cekBayarExist) {
+            // Hapus File Bukti Bayar
+            File::delete('assets/buktiBayar/'.$reservasi->pembayaran->bukti_bayar);
+            $reservasi->delete();
+            return redirect()->back()->with('success','Hapus data berhasil');
+        } else {
+            $reservasi->delete();
+            return redirect()->back()->with('success','Hapus data berhasil');
+        }
     }
 
     public function edit($id)

@@ -127,7 +127,7 @@
                                     @if (Auth::user()->is_admin == 1)
                                         {{-- Button Tampilkan Pembayaran --}}
                                         {{-- Hanya untuk status Proses Acc Admin dan Berhasil --}}
-                                        <a href="{{url('lihat-pembayaran/'.$reservasi->reservasi_id)}}" class="btn
+                                        <a href="{{url('admin/lihat-pembayaran/'.$reservasi->reservasi_id)}}" class="btn
                                                 @if ($reservasi->status == 'Proses Acc Admin'
                                                 or $reservasi->status == 'Berhasil')
                                                     btn-success"

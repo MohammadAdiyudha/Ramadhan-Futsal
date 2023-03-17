@@ -62,6 +62,9 @@ Route::group(['middleware' => 'is_admin'], function () {
 
     // Konfirmasi Pembayaran
     Route::post('admin/konfirmasi-bayar/{id}', [PembayaranController::class, 'konfirmasiBayar'])->name('konfirmasiBayar');
+
+    // Melihat Bukti Pembayaran
+    Route::get('admin/lihat-pembayaran/{id}',  [PembayaranController::class, 'lihatBayar']);
 });
 
 // Menu Buat Reservasi
@@ -84,7 +87,4 @@ Route::post('update-reservasi/{id}',  [ReservasiController::class, 'update']); /
 
 // Pembayaran
 Route::post('pembayaran', [PembayaranController::class, 'store']);
-
-// Melihat Bukti Pembayaran
-Route::get('lihat-pembayaran/{id}',  [PembayaranController::class, 'lihatBayar']);
 ?>

@@ -12,46 +12,51 @@
         <p>Pastikan pembayaran sudah diterima.</p>
     </blockquote>
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <img src="{{asset('assets/buktiBayar/'.$pembayaran->bukti_bayar)}}" alt="bukti bayar" class="img-fluid">
-            </div>
-            <div class="col">
-                <div class="row justify">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
                     <div class="col">
-                        @if (session('status'))
-                            <h6 class="alert alert-success">{{ session('status') }}</h6>
-                        @endif
-                        <div class="card">
-                            <div class="card-body">
-                                {{-- BUAT DEBUG --}}
-                                {{-- {{$reservasi->reservasi_id}} --}}
+                        <div class="text-center">
+                            <img src="{{asset('assets/buktiBayar/'.$pembayaran->bukti_bayar)}}" alt="bukti bayar" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row justify">
+                            <div class="col">
+                                @if (session('status'))
+                                    <h6 class="alert alert-success">{{ session('status') }}</h6>
+                                @endif
 
-                                    {{-- Buat cek id aktif bisa atau tidak --}}
-                                    {{-- <p>{{Auth::user()->id}}</p> --}}
-                                    <div class="form-group col mb-4">
-                                        <label for="" class="col-form-label">Bayar ID</label>
-                                        <input type="text" name="bayar_id" class="form-control" value="{{$pembayaran->bayar_id}}" readonly>
-                                    </div>
-                                    <div class="form-group col mb-4">
-                                        <label for="" class="col-form-label">Reservasi ID</label>
-                                        <input type="text" name="reservasi_id" class="form-control" value="{{$pembayaran->reservasi_id}}" readonly>
-                                    </div>
-                                    <div class="form-group col mb-4">
-                                        <label for="" class="col-form-label">Atas Nama</label>
-                                        <input type="text" name="atas_nama" class="form-control" value="{{$pembayaran->atas_nama}}" readonly>
-                                    </div>
-                                    <div class="form-group col mb-4">
-                                        <label for="" class="col-form-label">Jenis Bayar</label>
-                                        <input type="text" name="jenis_bayar" class="form-control" value="{{$pembayaran->jenis_bayar}}" readonly>
-                                    </div>
-                                    <form action="{{ route('konfirmasiBayar', $pembayaran->reservasi_id) }}" method="post">
-                                        @csrf
-                                        <div class="btn-group">
-                                            <button type="submit" name="btnaction" value="tidak valid" class="btn btn-danger">Tidak Valid</button>
-                                            <button type="submit" name="btnaction" value="valid" class="btn btn-success">Valid</button>
-                                        </div>
-                                    </form>
+                                        {{-- BUAT DEBUG --}}
+                                        {{-- {{$reservasi->reservasi_id}} --}}
+
+                                            {{-- Buat cek id aktif bisa atau tidak --}}
+                                            {{-- <p>{{Auth::user()->id}}</p> --}}
+                                            <div class="form-group col mb-4">
+                                                <label for="" class="col-form-label">Bayar ID</label>
+                                                <input type="text" name="bayar_id" class="form-control" value="{{$pembayaran->bayar_id}}" readonly>
+                                            </div>
+                                            <div class="form-group col mb-4">
+                                                <label for="" class="col-form-label">Reservasi ID</label>
+                                                <input type="text" name="reservasi_id" class="form-control" value="{{$pembayaran->reservasi_id}}" readonly>
+                                            </div>
+                                            <div class="form-group col mb-4">
+                                                <label for="" class="col-form-label">Atas Nama</label>
+                                                <input type="text" name="atas_nama" class="form-control" value="{{$pembayaran->atas_nama}}" readonly>
+                                            </div>
+                                            <div class="form-group col mb-4">
+                                                <label for="" class="col-form-label">Jenis Bayar</label>
+                                                <input type="text" name="jenis_bayar" class="form-control" value="{{$pembayaran->jenis_bayar}}" readonly>
+                                            </div>
+                                            <form action="{{ route('konfirmasiBayar', $pembayaran->reservasi_id) }}" method="post">
+                                                @csrf
+                                                <div class="btn-group">
+                                                    <button type="submit" name="btnaction" value="tidak valid" class="btn btn-danger">Tidak Valid</button>
+                                                    <button type="submit" name="btnaction" value="valid" class="btn btn-success">Valid</button>
+                                                </div>
+                                            </form>
+
+
                             </div>
                         </div>
                     </div>

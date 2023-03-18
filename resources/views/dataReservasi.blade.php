@@ -109,7 +109,7 @@
                                 @endswitch
                             </td>
                             {{-- Kolom - Tanggal --}}
-                            <td class=""><b>{{$reservasi->tanggal}}</b><br><i>{{ $reservasi->jam_awal }}-{{ $reservasi->jam_akhir }}</i></td>
+                            <td class=""><b>{{$reservasi->tanggal}}</b><br><i>({{ $reservasi->jam_awal }}-{{ $reservasi->jam_akhir }})</i></td>
                             {{-- Kolom - Harga --}}
                             <td class="">Rp {{ $reservasi->harga }}<br>({{ $reservasi->durasi }} Jam)</td>
                             {{-- Kolom - No HP --}}
@@ -323,7 +323,23 @@
     <script>
         $(document).ready( function () {
             var t = $('#user_table').DataTable({
-
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'collection',
+                        text: 'Buat Laporan',
+                        buttons: [
+                            {
+                                extend: 'excelHtml5',
+                                text: 'Excel',
+                            },
+                            {
+                                extend: 'pdfHtml5',
+                                text: 'PDF',
+                            },
+                        ]
+                    }
+                ],
                 columnDefs: [
                     {
                         searchable: false,
@@ -339,7 +355,6 @@
                 language: { // Ubah bahasa tabel ke indonesia
                     url: 'https://cdn.datatables.net/plug-ins/1.13.1/i18n/id.json'
                 },
-
             });
 
             // Fungsi biar iterasi di No.

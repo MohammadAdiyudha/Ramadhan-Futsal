@@ -51,12 +51,10 @@ class PembayaranController extends Controller
 
     public function lihatBayar($id)
     {
-        $pembayaran   = DB::table('pembayarans')
-                        ->where('reservasi_id','=',$id)
+        $pembayaran   = Pembayaran::where('reservasi_id','=',$id)
                         ->first();
-        $sudahBayar = DB::table('pembayarans')
-                ->where('reservasi_id','=',$id)
-                ->exists();
+        $sudahBayar = Pembayaran::where('reservasi_id','=',$id)
+                        ->exists();
         // Cek sudah bayar apa belum
         if($sudahBayar) {
             // Jika sudah bayar

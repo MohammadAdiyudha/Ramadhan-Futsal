@@ -135,8 +135,15 @@ class ReservasiController extends Controller
             // Jika mencoba akses data user lain
             return back()->with('error','Hayooo ngapain?');
         } else {
-            // Jika berhasil
+            // Tidak bisa edit jika status bukan Pending atau Menunggu Pembayaran
+            if ($reservasi->status != 'Pending' && $reservasi->status != 'Menunggu Pembayaran') {
+                return back()->with('error','Hayooo ngapain?');
+            } else {
+                // Jika berhasil
             return view('editReservasi')->with('reservasi', $reservasi);
+            }
+
+
         }
     }
 

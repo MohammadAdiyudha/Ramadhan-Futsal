@@ -7,38 +7,70 @@
 @stop
 
 @section('content')
-    <blockquote class="quote-olive">
+    <blockquote class="quote-info">
         <div class="container">
             <div class="row">
                 <div class="col-sm">
-                    <h5 class="text-olive">Tips! Kegunaan Tombol Aksi</h5>
+                    <h5 class="text-info">Tips! Tekan Tombol Berikut</h5>
                     <p class="text-justify">
                         {{-- TIPS ADMIN --}}
                         @if (Auth::user()->is_admin == 1)
-                            <button class="btn btn-success btn-sm mr-1"><i class="fa-solid fa-money-bill-transfer"></i></button>
-                             untuk melihat bukti transfer
-                            <br>
-                            <button class="btn btn-warning btn-sm mr-1"><i class="fa-solid fa-pen-to-square fa-fw"></i></button>
-                             untuk mengubah status reservasi
+                            <a tabindex="0"
+                                role="button"
+                                class="btn btn-dark"
+                                data-toggle="popover"
+                                title="Fungsi Setiap Tombol Aksi"
+                                data-html="true"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                data-content="<i class='fa-solid fa-money-bill-transfer fa-fw text-success'></i>
+                                                    untuk melihat bukti transfer
+                                                <br>
+                                                <i class='fa-solid fa-pen-to-square fa-fw text-warning'></i>
+                                                    untuk mengubah status reservasi
+                                                <br>
+                                                <i class='fa-solid fa-trash fa-fw text-danger'></i>
+                                                    untuk menghapus data reservasi">
+                                <b>Fungsi Tombol Aksi</b>
+                            </a>
+                            <a tabindex="0"
+                                role="button"
+                                class="btn btn btn-success"
+                                data-toggle="popover"
+                                title="Cara Buat Laporan Bulanan"
+                                data-html="true"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                data-content="<ol class='text-justify'>
+                                                <li>Ketik dengan format <b>Berhasil Tahun-Bulan</b> pada Kolom <b>Cari</b>. <br>Contoh : <b>Berhasil 2023-03</b> untuk menampilkan laporan bulan Maret 2023</li>
+                                                <li>Lalu tekan <b>Tombol Buat Laporan</b> dan Pilih Format Laporan</li>
+                                            </ol>">
+                                <b>Cara Buat Laporan Bulanan</b>
+                            </a>
 
                         {{-- TIPS USER --}}
                         @else
-                            <button class="btn btn-success btn-sm mr-1"><i class="fa-solid fa-money-bill-transfer"></i></button>
-                             untuk mengisi bukti transfer
-                            <br>
-                            <button class="btn btn-warning btn-sm mr-1"><i class="fa-solid fa-pen-to-square fa-fw"></i></button>
-                             untuk mengubah detail reservasi
-                        @endif
+                            <a tabindex="0"
+                                role="button"
+                                class="btn btn btn-info"
+                                data-toggle="popover"
+                                title="Kegunaan Tombol Aksi"
+                                data-html="true"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                data-content="<i class='fa-solid fa-money-bill-transfer fa-fw text-success'></i>
+                                                    untuk mengisi bukti transfer
+                                                <br>
+                                                <i class='fa-solid fa-pen-to-square fa-fw text-warning'></i>
+                                                    untuk mengubah detail reservasi
+                                                <br>
+                                                <i class='fa-solid fa-trash fa-fw text-danger'></i>
+                                                    untuk menghapus data reservasi">
+                                <b>Kegunaan Tombol Aksi</b>
+                            </a>
 
-                        {{-- TIPS KEDUANYA --}}
-                            <br>
-                            <button class="btn btn-danger btn-sm mr-1 mb-2"><i class="fa-solid fa-trash fa-fw"></i></button>
-                             untuk menghapus data reservasi
+                        @endif
                     </p>
-                </div>
-                <div class="col-sm">
-                    <h5 class="text-olive">Penjelasan Status</h5>
-                    <p>Tekan setiap status untuk menampilkan penjelasan setiap status.</p>
                 </div>
             </div>
         </div>
@@ -59,12 +91,6 @@
                             <th class="text-center">Reservasi ID</th>
                             <th class="text-center">Nama Pemesan</th>
                             <th class="text-center">Aksi</th>
-                            {{-- DEBUG RELATIONSHIP --}}
-                            {{-- Reservasi - Pembayaran --}}
-                            {{-- <th class="text-center">Atas Nama</th> --}}
-
-                            {{-- Reservasi - User  --}}
-                            {{-- <th class="text-center">Nama Pemesan</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -117,12 +143,12 @@
                             {{-- Kolom - Reservasi ID --}}
                             <td class="">{{ $reservasi->reservasi_id }}</td>
                             {{-- Kolom - Nama Pemesan --}}
+                            {{-- @ Digunakan untuk tetap menerima nilai NULL --}}
                             <td class="">{{ @$reservasi->user->name }}</td>
                             {{-- Kolom - Aksi --}}
                             {{-- Disabled sesuai status --}}
                             <td>
                                 <div class="btn-group">
-                                    {{-- Aksi Conditional --}}
                                     {{-- Admin Side --}}
                                     @if (Auth::user()->is_admin == 1)
                                         {{-- Button Tampilkan Pembayaran --}}
@@ -193,12 +219,6 @@
                                     @endif
                                 </div>
                             </td>
-                            {{-- DEBUG Reltionshiip --}}
-                            {{-- Reservasi - Pembayaran --}}
-                            {{-- <td class="">{{ @$reservasi->pembayaran->atas_nama }}</td> --}}
-
-                            {{-- Reservasi - User --}}
-                            {{-- <td class="">{{ @$reservasi->user->name }}</td> --}}
                         </tr>
                         @endforeach
                     </tbody>
@@ -483,6 +503,14 @@
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
+
+        $('.popover-dismiss').popover({
+            trigger: 'focus'
         })
     </script>
 @stop

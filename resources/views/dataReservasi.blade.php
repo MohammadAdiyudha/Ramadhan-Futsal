@@ -339,6 +339,7 @@
                     },
                     { className: "align-middle", "targets": [ 0,1,2,3,4,5,6,7 ] }, //Vertical Alignment
                     { className: "text-center", "targets": [ 0,1,5,6,7 ] }, //Horizontal Alignment
+                    // Lebar Kolom
                     { "width": "5%", "targets": [0,1,5,6,7] },
                     { "width": "10em", "targets": [2,3] },
                 ],
@@ -346,19 +347,22 @@
                 language: { // Ubah bahasa tabel ke indonesia
                     url: 'https://cdn.datatables.net/plug-ins/1.13.1/i18n/id.json'
                 },
+                // Tampilkan xxx Entri
                 lengthMenu: [
                     [10, 25, 50, -1],
                     [10, 25, 50, 'Semua'],
                 ],
+
+                // Footer untuk Total
                 footerCallback: function (row, data, start, end, display) {
                     var api = this.api();
 
-                    // Remove the formatting to get integer data for summation
+                    // Hapus Rp dan hanya return harga
                     var intVal = function (i) {
                         return typeof i === 'string' ? i.replace(/[\Rp,]/g, '') * 1 : typeof i === 'number' ? i : 0;
                     };
 
-                    // Total over all pages
+                    // Total Seluruh Status Semua Halaman
                     total = api
                         .column(3)
                         .data()
@@ -366,7 +370,7 @@
                             return intVal(a) + intVal(b);
                         }, 0);
 
-                    // Total over this page
+                    // Total Seluruh Status Halaman AKTIF
                     pageTotal = api
                         .column(3, { page: 'current' })
                         .data()
@@ -377,11 +381,14 @@
                     // Update footer
                     $(api.column(3).footer()).html('Rp' + pageTotal);
                 },
+                // Layouting
                 dom: 'Bfrtlp',
+
+                // Konfigurasi Button
                 buttons: [
                     {
-                        extend: 'collection',
-                        text: 'Buat Laporan',
+                        extend: 'collection', // Group Button
+                        text: 'Buat Laporan', // Caption
                         buttons: [
                             {
                                 extend: 'excelHtml5',
@@ -389,10 +396,10 @@
                                 exportOptions: {
                                     columns: [ 0,1,2,3,4,5,6 ],
                                     modifier: {
-                                        page: 'all',
+                                        page: 'all', // Agar menghitung Total Seluruh Halaman
                                     }
                                 },
-                                footer: true,
+                                footer: true, // Agar Footer Termasuk
                             },
                             {
                                 extend: 'pdfHtml5',
@@ -400,17 +407,17 @@
                                 exportOptions: {
                                     columns: [ 0,1,2,3,4,5,6 ],
                                     modifier: {
-                                        page: 'all',
+                                        page: 'all',  // Agar menghitung Total Seluruh Halaman
                                     }
                                 },
-                                footer: true,
+                                footer: true, // Agar Footer Termasuk
                             },
                         ]
                     }
                 ],
             });
 
-            // Fungsi biar iterasi di No.
+            // Fungsi biar iterasi otomatis di No.
             t.on('order.dt search.dt', function () {
                 let i = 1;
 
@@ -444,14 +451,15 @@
 
     </script>
 
-    {{-- Modal Bayar --}}
-    {{-- Passing data Reservasi dari tabel reservasis ke inputan modal --}}
+    {{-- Modal - Passing Data--}}
     <script>
+        // Modal Bayar
          $('.modalBayar').click(function(event) {
             var myReservasiID = $(this).attr('data-id');
             $(".modal-body #reservasiID_bayar").val( myReservasiID );
         });
 
+        // Modal Set Status
         $('.openModalSetStatus').click(function(event) {
             var sttReservasiID = $(this).attr('data-id');
             var sttStatus      = $(this).attr('data-status');

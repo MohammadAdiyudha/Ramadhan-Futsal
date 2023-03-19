@@ -323,23 +323,6 @@
     <script>
         $(document).ready( function () {
             var t = $('#user_table').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    {
-                        extend: 'collection',
-                        text: 'Buat Laporan',
-                        buttons: [
-                            {
-                                extend: 'excelHtml5',
-                                text: 'Excel',
-                            },
-                            {
-                                extend: 'pdfHtml5',
-                                text: 'PDF',
-                            },
-                        ]
-                    }
-                ],
                 columnDefs: [
                     {
                         searchable: false,
@@ -355,6 +338,32 @@
                 language: { // Ubah bahasa tabel ke indonesia
                     url: 'https://cdn.datatables.net/plug-ins/1.13.1/i18n/id.json'
                 },
+                // dom: 'Bfrtlp',
+                // buttons: [
+                //     {
+                //         extend: 'collection',
+                //         text: 'Buat Laporan',
+                //         // exportOptions: {
+                //         //     columns: [ 0,1,2,3,4,5,6 ]
+                //         // },
+                //         buttons: [
+                //             {
+                //                 extend: 'excelHtml5',
+                //                 text: 'Excel',
+                //                 exportOptions: {
+                //                     columns: [ 0,1,2,3,4,5,6 ]
+                //                 },
+                //             },
+                //             {
+                //                 extend: 'pdfHtml5',
+                //                 text: 'PDF',
+                //                 exportOptions: {
+                //                     columns: [ 0,1,2,3,4,5,6 ]
+                //                 },
+                //             },
+                //         ]
+                //     }
+                // ],
             });
 
             // Fungsi biar iterasi di No.

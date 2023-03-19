@@ -109,9 +109,9 @@
                                 @endswitch
                             </td>
                             {{-- Kolom - Tanggal --}}
-                            <td class=""><b>{{$reservasi->tanggal}}</b><br><i>({{ $reservasi->jam_awal }}-{{ $reservasi->jam_akhir }})</i></td>
+                            <td class=""><b>{{$reservasi->tanggal}}</b>&nbsp;<br><i>({{ $reservasi->jam_awal }}-{{ $reservasi->jam_akhir }})</i></td>
                             {{-- Kolom - Harga --}}
-                            <td class="">Rp {{ $reservasi->harga }}<br>({{ $reservasi->durasi }} Jam)</td>
+                            <td class="">Rp{{ $reservasi->harga }}</td>
                             {{-- Kolom - No HP --}}
                             <td class="">{{ $reservasi->no_hp }}</td>
                             {{-- Kolom - Reservasi ID --}}
@@ -202,6 +202,14 @@
                         </tr>
                         @endforeach
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Total Pemasukan :</th>
+                            <th style="text-align:left"></th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
@@ -338,32 +346,68 @@
                 language: { // Ubah bahasa tabel ke indonesia
                     url: 'https://cdn.datatables.net/plug-ins/1.13.1/i18n/id.json'
                 },
-                // dom: 'Bfrtlp',
-                // buttons: [
-                //     {
-                //         extend: 'collection',
-                //         text: 'Buat Laporan',
-                //         // exportOptions: {
-                //         //     columns: [ 0,1,2,3,4,5,6 ]
-                //         // },
-                //         buttons: [
-                //             {
-                //                 extend: 'excelHtml5',
-                //                 text: 'Excel',
-                //                 exportOptions: {
-                //                     columns: [ 0,1,2,3,4,5,6 ]
-                //                 },
-                //             },
-                //             {
-                //                 extend: 'pdfHtml5',
-                //                 text: 'PDF',
-                //                 exportOptions: {
-                //                     columns: [ 0,1,2,3,4,5,6 ]
-                //                 },
-                //             },
-                //         ]
-                //     }
-                // ],
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, 'Semua'],
+                ],
+                footerCallback: function (row, data, start, end, display) {
+                    var api = this.api();
+
+                    // Remove the formatting to get integer data for summation
+                    var intVal = function (i) {
+                        return typeof i === 'string' ? i.replace(/[\Rp,]/g, '') * 1 : typeof i === 'number' ? i : 0;
+                    };
+
+                    // Total over all pages
+                    total = api
+                        .column(3)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    // Total over this page
+                    pageTotal = api
+                        .column(3, { page: 'current' })
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    // Update footer
+                    $(api.column(3).footer()).html('Rp' + pageTotal);
+                },
+                dom: 'Bfrtlp',
+                buttons: [
+                    {
+                        extend: 'collection',
+                        text: 'Buat Laporan',
+                        buttons: [
+                            {
+                                extend: 'excelHtml5',
+                                text: 'Excel',
+                                exportOptions: {
+                                    columns: [ 0,1,2,3,4,5,6 ],
+                                    modifier: {
+                                        page: 'all',
+                                    }
+                                },
+                                footer: true,
+                            },
+                            {
+                                extend: 'pdfHtml5',
+                                text: 'PDF',
+                                exportOptions: {
+                                    columns: [ 0,1,2,3,4,5,6 ],
+                                    modifier: {
+                                        page: 'all',
+                                    }
+                                },
+                                footer: true,
+                            },
+                        ]
+                    }
+                ],
             });
 
             // Fungsi biar iterasi di No.

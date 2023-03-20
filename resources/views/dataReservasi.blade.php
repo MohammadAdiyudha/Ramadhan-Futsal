@@ -420,6 +420,9 @@
                                     }
                                 },
                                 footer: true, // Agar Footer Termasuk
+                                messageTop: 'Jangan Lupa Ketik "Berhasil Tahun-Bulan" untuk mendapatkan laporan yang VALID.',
+                                messageBottom : "Data di atas merupakan data dari Ramadhan Futsal, Cilacap.",
+                                title: "Data Reservasi - Ramadhan Futsal",
                             },
                             {
                                 extend: 'pdfHtml5',
@@ -431,6 +434,23 @@
                                     }
                                 },
                                 footer: true, // Agar Footer Termasuk
+                                messageTop: 'Jangan Lupa Ketik "Berhasil Tahun-Bulan" untuk mendapatkan laporan yang VALID.',
+                                messageBottom : "Data di atas merupakan data dari Ramadhan Futsal, Cilacap.",
+                                title: "Data Reservasi - Ramadhan Futsal",
+                            },
+                            {
+                                extend: 'print',
+                                text: 'Print',
+                                exportOptions: {
+                                    columns: [ 0,1,2,3,4,5,6 ],
+                                    modifier: {
+                                        page: 'all',  // Agar menghitung Total Seluruh Halaman
+                                    }
+                                },
+                                footer: true, // Agar Footer Termasuk
+                                messageTop: 'Jangan Lupa Ketik "Berhasil Tahun-Bulan" untuk mendapatkan laporan yang VALID.',
+                                messageBottom : "Data di atas merupakan data dari Ramadhan Futsal, Cilacap.",
+                                title: "Data Reservasi - Ramadhan Futsal",
                             },
                         ]
                     }

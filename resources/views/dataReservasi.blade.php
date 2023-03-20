@@ -42,7 +42,7 @@
                                 data-trigger="focus"
                                 data-placement="bottom"
                                 data-content="<ol class='text-justify'>
-                                                <li>Ketik dengan format <b>Berhasil Tahun-Bulan</b> pada Kolom <b>Cari</b>. <br>Contoh : <b>Berhasil 2023-03</b> untuk menampilkan laporan bulan Maret 2023</li>
+                                                <li>Ketik dengan format <b>Berhasil Tahun-Bulan</b> pada Kolom <b>Cari</b>. <br><u>Contoh</u> : <b>Berhasil 2023-03</b> untuk menampilkan laporan bulan Maret 2023</li>
                                                 <li>Lalu tekan <b>Tombol Buat Laporan</b> dan Pilih Format Laporan</li>
                                             </ol>">
                                 <b>Cara Buat Laporan Bulanan</b>
@@ -226,8 +226,8 @@
                         <tr>
                             <th></th>
                             <th></th>
-                            <th>Total Pemasukan :</th>
-                            <th style="text-align:left"></th>
+                            <th class="text-right">{{ Auth::user()->is_admin == 1 ? "Total Pemasukan : " : "Total Pengeluaran : " }}</th>
+                            <th class="text-left"></th>
                         </tr>
                     </tfoot>
                 </table>

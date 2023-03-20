@@ -21,7 +21,7 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table id="user_table" class="display table table-bordered table-hover">
+                <table id="user_table" class="display compact table table-bordered table-hover">
                     <thead class="thead-dark">
                         <tr>
                             <th class="text-center">No.</th>
@@ -113,7 +113,7 @@
 
                     { className: "align-middle", "targets": [ 0,1,2,3,4,5,6 ] }, //Vertical Alignment
                     { className: "text-center", "targets": [ 0,3,4,5,6 ] }, //Horizontal Alignment
-                    { "width": "5%", "targets": [0,3,,4,5,6] },
+                    { "width": "5%", "targets": [0,4,5,6] },
                 ],
                 order: [[1, 'asc']], // Order dari Nama
                 language: { // Ubah bahasa tabel ke indonesia

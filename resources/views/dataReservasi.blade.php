@@ -80,7 +80,7 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table id="user_table" class="display table table-bordered table-hover">
+                <table id="user_table" class="display compact table table-bordered table-hover">
                     <thead class="thead-dark">
                         <tr>
                             <th class="text-center">No.</th>

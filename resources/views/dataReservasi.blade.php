@@ -265,9 +265,9 @@
                                 <div class="form-group row mb-2">
                                     <label for="jenis_bayar" class="col-form-label">Jenis Pembayaran</label>
                                     <select name="jenis_bayar" id="jenis_bayar" class="form-control">
-                                        <option value="Mandiri">Mandiri : 113-556-33743</option>
-                                        <option value="Shopeepay">Shopeepay : 0811223344</option>
-                                        <option value="Gopay">Gopay : 0811223344</option>
+                                        <option value="Mandiri">Mandiri - 113-556-33743</option>
+                                        <option value="Shopeepay">Shopeepay - 0811223344</option>
+                                        <option value="Gopay">Gopay - 0811223344</option>
                                     </select>
                                 </div>
                                 {{-- Upload Bukti Pembayaran --}}

@@ -13,11 +13,38 @@
                 <div class="col-sm">
                     <h5 class="text-info">Tips! Tekan Tombol Berikut</h5>
                     <p class="text-justify">
+                        {{-- TIPS SEMUA USER --}}
+                        <a tabindex="0"
+                                role="button"
+                                class="btn btn-warning"
+                                data-toggle="popover"
+                                title="Arti Kolom Status"
+                                data-html="true"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                data-content="<span class='badge badge-tips badge-warning mb-1' style='width: 100px;'>
+                                                    Menunggu Pembayaran
+                                              </span> Pemesan belum membayar.
+                                              <br>
+                                              <span class='badge badge-tips badge-primary mb-1' style='width: 100px;'>
+                                                    Porses Acc Admin
+                                              </span> Pemesan sudah membayar, Admin sedang mengecek pembayaran.
+                                              <br>
+                                              <span class='badge badge-tips badge-success mb-1' style='width: 100px;'>
+                                                    Berhasil
+                                              </span> Pesanan sudah di acc admin, silakan datang sesuai jadwal.
+                                              <br>
+                                              <span class='badge badge-tips badge-danger mb-1' style='width: 100px;'>
+                                                    Ditolak
+                                              </span> Pembayaran tidak sesuai atau data tidak valid.
+                                              ">
+                                <b>Arti Kolom Status</b>
+                            </a>
                         {{-- TIPS ADMIN --}}
                         @if (Auth::user()->is_admin == 1)
                             <a tabindex="0"
                                 role="button"
-                                class="btn btn-dark"
+                                class="btn btn-info"
                                 data-toggle="popover"
                                 title="Fungsi Setiap Tombol Aksi"
                                 data-html="true"
@@ -54,7 +81,7 @@
                                 role="button"
                                 class="btn btn btn-info"
                                 data-toggle="popover"
-                                title="Kegunaan Tombol Aksi"
+                                title="Fungsi Tombol Aksi"
                                 data-html="true"
                                 data-trigger="focus"
                                 data-placement="bottom"
@@ -66,7 +93,7 @@
                                                 <br>
                                                 <i class='fa-solid fa-trash fa-fw text-danger'></i>
                                                     untuk menghapus data reservasi">
-                                <b>Kegunaan Tombol Aksi</b>
+                                <b>Fungsi Tombol Aksi</b>
                             </a>
 
                         @endif
@@ -332,6 +359,16 @@
 
 @section('css')
     <link href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/date-1.4.0/datatables.min.css" rel="stylesheet"/>
+    <style>
+        /* Custom Style */
+        .popover {
+            max-width: 800px;
+        }
+
+        .badge-tips {
+            font-size: 13px;
+        }
+    </style>
 @stop
 
 @section('js')

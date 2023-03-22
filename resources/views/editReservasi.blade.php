@@ -177,7 +177,7 @@
                 var splitAwal = valueAwal.split(":");
                 var splitAkhir = valueAkhir.split(":");
                 var durasi = parseInt(splitAkhir[0]) - parseInt(splitAwal[0]) ;
-                var harga = durasi*50000;
+                var harga = durasi*110000;
                 document.getElementById('durasi').value = durasi;
                 document.getElementById('harga').value = harga;
             });

@@ -138,7 +138,7 @@
                 timeFormat: 'HH:mm:ss',
                 interval: 60,
                 minTime: '9',
-                maxTime: '8:00pm',
+                maxTime: '10:00pm',
                 dynamic: false,
                 dropdown: true,
                 scrollbar: true
@@ -156,7 +156,7 @@
                 timeFormat: 'HH:mm:ss',
                 interval: 60,
                 minTime: '10',
-                maxTime: '9:00pm',
+                maxTime: '11:00pm',
                 dynamic: false,
                 dropdown: true,
                 scrollbar: true

@@ -7,7 +7,6 @@
 @stop
 
 @section('content')
-    <p>Selamat datang di Web Reservasi Ramadhan Futsal.</p>
     <div class="card">
         <div class="card-body">
             <div id='calendar'></div>
@@ -77,6 +76,9 @@
                     info.el.style.eventColor = 'white';
                 } else if (info.event.extendedProps.description=='Berhasil') {
                     info.el.style.backgroundColor = '#198754';
+                    info.el.style.color = 'white';
+                } else if (info.event.extendedProps.description=='Menunggu Pembayaran') {
+                    info.el.style.backgroundColor = '#ff8c00';
                     info.el.style.color = 'white';
                 }
 

@@ -37,7 +37,7 @@ Route::get('/home', \App\Http\Controllers\HomeController::class)->name('home');
 // Route Khusus Admin
 Route::group(['middleware' => 'is_admin'], function () {
     // Dashboard Admin
-    Route::get('admin/home', \App\Http\Controllers\HomeController::class)->name('admin.home');
+    Route::get('admin/home', \App\Http\Controllers\HomeController::class);
 
     // Dashboard Admin
     Route::get('admin', function () {

@@ -17,31 +17,12 @@ class HomeController extends Controller
     {
         $this->middleware(['auth','verified']);
     }
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        return view('home');
-    }
-
-    /**
-     * Show the ADMIN dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function adminHome()
-    {
-        return view('admin.adminHome');
-    }
 
     public function __invoke()
     {
         $events = [];
 
-        $reservasis = Reservasi::whereNotIn('status',['Menunggu Pembayaran','Ditolak'])
+        $reservasis = Reservasi::whereNotIn('status',['Ditolak'])
                                 ->get();
 
         foreach ($reservasis as $reservasi) {
@@ -53,11 +34,7 @@ class HomeController extends Controller
             ];
         }
 
-        if(Auth::user()->is_admin==1) {
-            return view('admin.adminHome', compact('events'));
-        } else {
-            return view('home', compact('events'));
-        }
+        return view('home', compact('events'));
     }
 
 }

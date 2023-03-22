@@ -16,7 +16,7 @@ class ReservasiSeeder extends Seeder
     {
         \DB::table('reservasis')->insert([
             // USER ID 1 - Bukan Dummy
-            [   //Pending
+            [   //Menunggu Pembayaran 1
                 'user_id' => '2',
                 'no_hp' => '111111111111',
                 'tanggal' => Carbon::now()->format('Y-m-d'),
@@ -24,12 +24,12 @@ class ReservasiSeeder extends Seeder
                 'jam_akhir' => '15:00:00',
                 'durasi' => '4',
                 'harga' => '440000',
-                'status' => 'Pending',
+                'status' => 'Menunggu Pembayaran',
                 'created_at' => now(),
                 'updated_at' => now(),
 
             ],
-            [   //Menunggu Pembayaran
+            [   //Menunggu Pembayaran 2
                 'user_id' => '2',
                 'no_hp' => '222222222222',
                 'tanggal' => Carbon::now()->addDays(5)->format('Y-m-d'),
@@ -82,7 +82,7 @@ class ReservasiSeeder extends Seeder
 
             ],
 
-            [   //Pending 2
+            [   //Menunggu Pembayaran 3
                 'user_id' => '2',
                 'no_hp' => '121212121212',
                 'tanggal' => Carbon::now()->format('Y-m-d'),
@@ -90,7 +90,7 @@ class ReservasiSeeder extends Seeder
                 'jam_akhir' => '20:00:00',
                 'durasi' => '2',
                 'harga' => '220000',
-                'status' => 'Pending',
+                'status' => 'Menunggu Pembayaran',
                 'created_at' => now(),
                 'updated_at' => now(),
 

@@ -41,7 +41,7 @@ class HomeController extends Controller
     {
         $events = [];
 
-        $reservasis = Reservasi::whereNotIn('status',['Pending','Menunggu Pembayaran','Ditolak'])
+        $reservasis = Reservasi::whereNotIn('status',['Menunggu Pembayaran','Ditolak'])
                                 ->get();
 
         foreach ($reservasis as $reservasi) {

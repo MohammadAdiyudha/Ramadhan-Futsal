@@ -102,12 +102,6 @@
                             <td class="">
                                 {{-- Switch untuk membedakan warna text sesuai status --}}
                                 @switch($reservasi->status)
-                                    @case('Pending')
-                                        <div class="badge badge-secondary text-wrap" style="width: 5rem;"
-                                        data-toggle="tooltip" data-placement="top" title="Admin Sedang Memastikan Jadwal Tersedia">
-                                            Pending
-                                        </div>
-                                        @break
                                     @case('Menunggu Pembayaran')
                                         <div class="badge badge-warning text-wrap" style="width: 5rem;"
                                         data-toggle="tooltip" data-placement="top" title="Jadwal Tersedia, Silahkan Membayar Untuk Melanjutkan">
@@ -191,9 +185,9 @@
                                         </button>
 
                                         {{-- Edit Reservasi --}}
-                                        {{-- Hanya bisa dilakukan di status Pending dan Menunggu Pembayaran --}}
+                                        {{-- Hanya bisa dilakukan di status Menunggu Pembayaran --}}
                                         <a href="{{url('edit-reservasi/'.$reservasi->reservasi_id)}}"  class="btn
-                                            @if ($reservasi->status == 'Pending' or $reservasi->status == 'Menunggu Pembayaran')
+                                            @if ($reservasi->status == 'Menunggu Pembayaran')
                                                 btn-warning"
                                             @else
                                                 btn-secondary disabled" aria-disabled="true"
@@ -202,7 +196,7 @@
                                         </a>
 
                                         {{-- Hapus Reservasi --}}
-                                        {{-- Clickable untuk status Pending, Menunggu Pembayaran, Ditolak --}}
+                                        {{-- Clickable untuk status Menunggu Pembayaran, Ditolak --}}
                                         <form method="POST" action="{{ route('reservasi.delete', $reservasi->reservasi_id) }}">
                                             @csrf
                                             <input name="_method" type="hidden" value="DELETE">
@@ -316,7 +310,6 @@
                                 <div class="form-group row mb-2">
                                     <label for="setStatus" class="col-form-label">Status Reservasi</label>
                                     <select class="custom-select" id="setStatus" name="setStatus"">
-                                        <option value="Pending">Pending</option>
                                         <option value="Menunggu Pembayaran">Menunggu Pembayaran</option>
                                         <option value="Proses Acc Admin">Proses Acc Admin</option>
                                         <option value="Berhasil">Berhasil</option>

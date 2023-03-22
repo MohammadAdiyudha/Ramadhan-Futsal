@@ -98,7 +98,7 @@ class ReservasiController extends Controller
                 $reservasi->jam_akhir = $request->input('jam_akhir');
                 $reservasi->durasi = $request->input('durasi');
                 $reservasi->harga = $request->input('harga');
-                $reservasi->status = "Pending";
+                $reservasi->status = "Menunggu Pembayaran";
                 $reservasi->save();
                 return redirect("data-reservasi")->with('success','Reservasi Berhasil Dibuat');
             }
@@ -135,8 +135,8 @@ class ReservasiController extends Controller
             // Jika mencoba akses data user lain
             return back()->with('error','Hayooo ngapain?');
         } else {
-            // Tidak bisa edit jika status bukan Pending atau Menunggu Pembayaran
-            if ($reservasi->status != 'Pending' && $reservasi->status != 'Menunggu Pembayaran') {
+            // Tidak bisa edit jika status bukan Menunggu Pembayaran
+            if ($reservasi->status != 'Menunggu Pembayaran') {
                 return back()->with('error','Hayooo ngapain?');
             } else {
                 // Jika berhasil
@@ -213,7 +213,7 @@ class ReservasiController extends Controller
             $reservasi->jam_akhir = $request->input('jam_akhir');
             $reservasi->durasi = $request->input('durasi');
             $reservasi->harga = $request->input('harga');
-            $reservasi->status = "Pending";
+            $reservasi->status = "Menunggu Pembayaran";
             $reservasi->update();
             return redirect("data-reservasi")->with('success','Ubah data berhasil');
         }

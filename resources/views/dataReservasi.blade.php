@@ -130,26 +130,22 @@
                                 {{-- Switch untuk membedakan warna text sesuai status --}}
                                 @switch($reservasi->status)
                                     @case('Menunggu Pembayaran')
-                                        <div class="badge badge-warning text-wrap" style="width: 5rem;"
-                                        data-toggle="tooltip" data-placement="top" title="Jadwal Tersedia, Silahkan Membayar Untuk Melanjutkan">
+                                        <div class="badge badge-warning text-wrap" style="width: 5rem;">
                                             Menunggu Pembayaran
                                         </div>
                                         @break
                                     @case('Proses Acc Admin')
-                                        <div class="badge badge-primary text-wrap" style="width: 5rem;"
-                                        data-toggle="tooltip" data-placement="top" title="Pembayaran Masuk, Admin Sedang Konfirmasi Pembayaran">
+                                        <div class="badge badge-primary text-wrap" style="width: 5rem;">
                                             Proses Acc Admin
                                         </div>
                                         @break
                                     @case('Berhasil')
-                                        <div class="badge badge-success text-wrap" style="width: 5rem;"
-                                        data-toggle="tooltip" data-placement="top" title="Pembayaran Valid, Silahkan Datang Sesuai Jadwal">
+                                        <div class="badge badge-success text-wrap" style="width: 5rem;">
                                             Berhasil
                                         </div>
                                         @break
                                     @case('Ditolak')
-                                        <div class="badge badge-danger text-wrap" style="width: 5rem;"
-                                        data-toggle="tooltip" data-placement="top" title="Jadwal Tersebut Penuh / Pembayaran Tidak Valid">
+                                        <div class="badge badge-danger text-wrap" style="width: 5rem;">
                                             Ditolak
                                         </div>
                                         @break

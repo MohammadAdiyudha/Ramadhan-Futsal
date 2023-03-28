@@ -65,6 +65,10 @@ Route::group(['middleware' => 'is_admin'], function () {
 
     // Melihat Bukti Pembayaran
     Route::get('admin/lihat-pembayaran/{id}',  [PembayaranController::class, 'lihatBayar']);
+
+    // Buat Reservasi (ADMIN)
+    Route::get('admin/buat-reservasi', [ReservasiController::class, 'createAdmin']);
+    Route::post('admin/buat-reservasi', [ReservasiController::class, 'storeAdmin']);
 });
 
 // Menu Buat Reservasi

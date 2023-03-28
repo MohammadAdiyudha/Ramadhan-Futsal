@@ -229,4 +229,94 @@ class ReservasiController extends Controller
 
         return redirect("admin/data-reservasi")->with('success','Ubah status berhasil');
     }
+
+    public function createAdmin()
+    {
+        return view('admin.buatReservasiAdmin');
+    }
+
+    public function storeAdmin(Request $request)
+    {
+        $reservasi = new Reservasi;
+        $user = Auth::user();
+
+        try {
+            $validator = Validator::make($request->all(), [
+                'no_hp'  => 'required|min:10',
+                'tanggal'  => 'required',
+                'jam_awal'  => 'required',
+                'jam_akhir'  => 'required',
+                'atas_nama' => 'required',
+                'jenis_bayar' => 'required',
+                'bukti_bayar' => 'required',
+            ]);
+
+            // Jika Validator gagal
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator);
+            };
+
+            // Untuk Double Booking
+            // Tambah * Kurang 1 Detik
+            $parseJamAwal = Carbon::createFromFormat('H:i:s',$request->input('jam_awal'));
+            $newJamAwal = $parseJamAwal->addSecond()->toTimeString();
+            $parseJamAkhir = Carbon::createFromFormat('H:i:s',$request->input('jam_akhir'));
+            $newJamAkhir = $parseJamAkhir->subSecond()->toTimeString();
+            // dd($newJamAwal,$newJamAkhir);
+
+            // Algoritma Duble Booking / Jadwal Bentrok
+            $cekBooked = Reservasi::where('tanggal', $request->input('tanggal'))
+                                    ->where(
+                                        fn ($q) => $q->whereBetween('jam_awal', [$newJamAwal, $newJamAkhir])
+                                                    ->orWhereBetween('jam_akhir', [$newJamAwal, $newJamAkhir])
+                                                    ->orWhere (
+                                                        fn ($q) => $q->where('jam_awal', '<', $newJamAwal)
+                                                                    ->where('jam_akhir', '>', $newJamAkhir)
+                                                    )
+                                    )
+                                    ->exists();
+
+            // Jika ada jadwal bentrok
+            if ($cekBooked) {
+                return redirect()->back()->with('error','JADWAL BENTROK!!! Ganti ke jadwal lain');
+            // Jika jadwal tidak bentrok
+            } else {
+                // Proses Insert ke Table Reservasi
+                $reservasi->user_id = $user->id;
+                $reservasi->no_hp = $request->input('no_hp');
+                $reservasi->tanggal = $request->input('tanggal');
+                $reservasi->jam_awal = $request->input('jam_awal');
+                $reservasi->jam_akhir = $request->input('jam_akhir');
+                $reservasi->durasi = $request->input('durasi');
+                $reservasi->harga = $request->input('harga');
+                $reservasi->status = "Berhasil";
+                $reservasi->save();
+
+                // Proses Insert ke Table Pembayaran
+                $pembayaran = new Pembayaran;
+                $pembayaran->reservasi_id = $reservasi->reservasi_id;
+                $pembayaran->atas_nama = $request->input('atas_nama');
+                $pembayaran->jenis_bayar = $request->input('jenis_bayar');
+                if($request->hasfile('bukti_bayar'))
+                {
+                    $file = $request->file('bukti_bayar');
+                    $extenstion = $file->getClientOriginalExtension();
+                    $filename = uniqid().'.'.$extenstion;
+                    $file->move('assets/buktiBayar/', $filename);
+                    $pembayaran->bukti_bayar = $filename;
+                }
+                $pembayaran->save();
+
+                return redirect("admin/data-reservasi")->with('success','Reservasi Berhasil Dibuat');
+            }
+
+        } catch(\Illuminate\Database\QueryException $e){
+            // Handling error duplicate
+            $errorCode = $e->errorInfo[1];
+            if($errorCode == '1062'){
+                return redirect()->back()->with('error','Jadwal Bentrok! Silahkan cari jadwal lain');
+            }
+        }
+
+    }
 }

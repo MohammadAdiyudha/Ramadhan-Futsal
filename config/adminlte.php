@@ -338,6 +338,12 @@ return [
         ],
         // MENU ADMIN
         [
+            'text' => 'Buat Reservasi',
+            'url'  => '/admin/buat-reservasi',
+            'can'  => 'admin_area',
+            'icon' => 'fa-sharp fa-solid fa-plus fa-fw',
+        ],
+        [
             'text' => 'Data Reservasi',
             'url'  => 'admin/data-reservasi',
             'can'  => 'admin_area',

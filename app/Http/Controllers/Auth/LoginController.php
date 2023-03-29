@@ -71,6 +71,6 @@ class LoginController extends Controller
         $request->session()->regenerate();
 
         return redirect('/login')
-            ->withSuccess('Terimakasih, selamat datang kembali!');
+            ->withSuccess('Terimakasih, sampai jumpa lagi!');
     }
 }

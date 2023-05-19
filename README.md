@@ -1,5 +1,4 @@
 ## Detail Aplikasi
-<p align="center"><img src="assets/logo/Logo 50x50.png" width="400"></p>
 Aplikasi Web Reservasi Ramadhan Futsal - Tugas Akhir
 Lokasi : Karangsari, Cilacap, Jawa Tengah
 Developer : Mohammad Adiyudha Wisnu Wardana

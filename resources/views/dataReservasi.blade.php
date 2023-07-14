@@ -292,7 +292,7 @@
                                     <label for="" class="col-form-label">Bukti Pembayaran</label>
                                     <div class="custom-file">
                                         <input type="file" id="bukti_bayar" name="bukti_bayar" class="w-auto custom-file-input" required>
-                                        <label class="custom-file-label" for="bukti_bayar">Pilih file gambar atau pdf...</label>
+                                        <label class="custom-file-label" for="bukti_bayar">Pilih file gambar...</label>
                                     </div>
                                 </div>
                             </div>

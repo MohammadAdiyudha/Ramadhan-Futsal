@@ -5,7 +5,7 @@ use Auth;
 use App\Models\Pembayaran;
 use App\Models\Reservasi;
 use DB;
-
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class PembayaranController extends Controller
@@ -19,6 +19,15 @@ class PembayaranController extends Controller
             $pembayaran->reservasi_id = $request->input('reservasiID_bayar');
             $pembayaran->atas_nama = $request->input('atas_nama');
             $pembayaran->jenis_bayar = $request->input('jenis_bayar');
+
+            $validator = Validator::make($request->all(), [
+                'bukti_bayar' => 'image |max:4096 |required',
+            ]);
+
+            // Jika Validator gagal
+            if ($validator->fails()) {
+                return redirect()->back()->with('error','Format bukti bayar salah');
+            };
 
             if($request->hasfile('bukti_bayar'))
             {

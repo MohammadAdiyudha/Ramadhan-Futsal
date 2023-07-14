@@ -248,7 +248,7 @@ class ReservasiController extends Controller
                 'jam_akhir'  => 'required',
                 'atas_nama' => 'required',
                 'jenis_bayar' => 'required',
-                'bukti_bayar' => 'required',
+                'bukti_bayar' => 'required|image',
             ]);
 
             // Jika Validator gagal

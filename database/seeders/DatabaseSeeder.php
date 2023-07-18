@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(dummyAccSeeder::class);
         $this->call(ReservasiSeeder::class);
         $this->call(PembayaranSeeder::class);
-        $this->call(FakerSeeder::class);
+        // $this->call(FakerSeeder::class);
     }
 }

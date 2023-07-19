@@ -16,7 +16,7 @@ use App\Http\Controllers\PembayaranController;
 */
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return redirect()->route('home');
 });
 
 Route::get('/login', function () {

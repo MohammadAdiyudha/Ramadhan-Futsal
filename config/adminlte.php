@@ -307,19 +307,18 @@ return [
             'text' => 'Cari menu..',
         ],
         // Menu
-        ['header' => 'MENU','can'  => ['admin_area','user_area']],
+        ['header' => 'MENU'],
         // Dashboard Admin
-        [
-            'text' => 'Dashboard',
-            'url'  => 'admin/home',
-            'can'  => 'admin_area',
-            'icon' => 'fa-solid fa-house fa-fw',
-        ],
+        // [
+        //     'text' => 'Dashboard',
+        //     'url'  => 'admin/home',
+        //     'can'  => 'admin_area',
+        //     'icon' => 'fa-solid fa-house fa-fw',
+        // ],
         // Dashboard User
         [
             'text' => 'Dashboard',
             'url'  => '/home',
-            'can'  => 'user_area',
             'icon' => 'fa-solid fa-house fa-fw',
         ],
 
@@ -355,17 +354,26 @@ return [
             'can'  => 'admin_area',
             'icon' => 'fa-solid fa-users fa-fw',
         ],
+        // Menu Non User
+        [
+            'text' => 'Login',
+            'url'  => 'login',
+            'can'  => 'visitor_area',
+            'icon' => 'fa-solid fa-right-to-bracket fa-fw',
+        ],
 
         // SETTING AKUN
-        ['header' => 'PENGATURAN AKUN'],
+        ['header' => 'PENGATURAN AKUN','can'  => ['admin_area','user_area']],
         [
             'text' => 'change_password',
             'url'  => 'changePassword',
+            'can'  => ['admin_area','user_area'],
             'icon' => 'fas fa-fw fa-lock fa-fw',
         ],
         [
             'text' => 'log_out',
             'url'  => 'logout',
+            'can'  => ['admin_area','user_area'],
             'icon' => 'fa-solid fa-right-from-bracket fa-fw',
         ],
         // [

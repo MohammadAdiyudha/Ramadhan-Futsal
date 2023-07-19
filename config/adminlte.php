@@ -361,7 +361,13 @@ return [
             'can'  => 'visitor_area',
             'icon' => 'fa-solid fa-right-to-bracket fa-fw',
         ],
-
+        //  Menu User Belum Verifikasi
+        [
+            'text' => 'Verifikasi Email',
+            'url'  => 'email/verify',
+            'can'  => 'user_non_verif_area',
+            'icon' => 'fa-solid fa-unlock-keyhole fa-fw',
+        ],
         // SETTING AKUN
         ['header' => 'PENGATURAN AKUN','can'  => ['admin_area','user_area']],
         [
@@ -373,7 +379,7 @@ return [
         [
             'text' => 'log_out',
             'url'  => 'logout',
-            'can'  => ['admin_area','user_area'],
+            'can'  => ['admin_area','user_area', 'user_non_verif_area'],
             'icon' => 'fa-solid fa-right-from-bracket fa-fw',
         ],
         // [

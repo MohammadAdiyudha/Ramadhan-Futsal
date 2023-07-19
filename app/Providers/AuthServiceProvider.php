@@ -51,5 +51,16 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('visitor_area', function ($user = null) {
             return $user == null;
         });
+
+        // Gate untuk user belum verifikasi
+        Gate::define('user_non_verif_area', function ($user) {
+
+            if (auth()->user()->is_admin == 0 && auth()->user()->email_verified_at == NULL) {
+                return true;
+            }
+
+            return false;
+
+        });
     }
 }

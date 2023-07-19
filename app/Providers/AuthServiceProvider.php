@@ -46,5 +46,10 @@ class AuthServiceProvider extends ServiceProvider
             return false;
 
         });
+
+        // Gate untuk visitor / non user
+        Gate::define('visitor_area', function ($user = null) {
+            return $user == null;
+        });
     }
 }
